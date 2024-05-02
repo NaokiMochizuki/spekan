@@ -36,6 +36,7 @@
 /node_modules
 /vendor/bundle
 .DS_Store
+tags.lock
 
 # Vite Ruby
 /public/vite*

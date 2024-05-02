@@ -1,10 +1,11 @@
 <template>
   <div id='app'>
-    <span>Vueで変更されたDiv</span>
+    <button @click="increment">Count is: {{ count }}</button>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'accountDashbordIndex',
   data() {
@@ -12,12 +13,15 @@ export default {
     }
   },
   computed: {
+    ...mapState('test', ['count']),
   },
   methods: {
+    ...mapActions('test', ['increment'])
   }
 }
 </script>
 
 <style>
 </style>
+
 
