@@ -1,87 +1,70 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
 
-  # Code is not reloaded between requests.
+  # ====== キャッシング======
+  # 起動時に1度のみクラスの読み込み。以後はキャッシュを使用
   config.cache_classes = true
 
-  # Eager load code on boot. This eager loads most of Rails and
-  # your application in memory, allowing both threaded web servers
-  # and those relying on copy on write to perform better.
-  # Rake tasks automatically ignore this option for performance.
+  # 起動時にメモリにクラスとモジュールを読み込み
   config.eager_load = true
 
-  # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  # ActionControllerのキャッシュを有効に。レスポンスにキャッシュが使える
   config.action_controller.perform_caching = true
 
-  # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
-  # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
-
-  # Disable serving static files from the `/public` folder by default since
-  # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.asset_host = "http://assets.example.com"
-
-  # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
-  # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
-
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
-
-  # Mount Action Cable outside main process or domain.
-  # config.action_cable.mount_path = nil
-  # config.action_cable.url = "wss://example.com/cable"
-  # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
-
-  # Include generic and useful information about system operation, but avoid logging too much
-  # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
-
-  # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
-
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
-
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "app_production"
-
+  # アクションメーラーのキャッシング機能は無効に
   config.action_mailer.perform_caching = false
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
 
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
-  config.i18n.fallbacks = true
 
-  # Don't log any deprecations.
-  config.active_support.report_deprecations = false
+  # ====== エラー表示、ログ ======
+  # 詳細エラーは表示しない
+  config.consider_all_requests_local = false
 
-  # Use default logging formatter so that PID and timestamp are not suppressed.
+  # ログレベルをinfoに指定
+  config.log_level = :info
+
+  # デフォルトのログフォーマットを使用
   config.log_formatter = ::Logger::Formatter.new
 
-  # Use a different logger for distributed setups.
-  # require "syslog/logger"
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
+  # ログにリクエスト毎のIDタグを付与
+  config.log_tags = [ :request_id ]
 
+  # この環境変数が定義されていれば、ログを標準出力に指定の形で表示
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  # Do not dump schema after migrations.
+
+
+  # ====== ActiveStrage ======
+  # ActiveStrage経由でアップロードされたファイルをローカルに保存(localの詳細はstorage.ymlに定義)
+  config.active_storage.service = :local
+
+
+
+  # ====== コンパイル ======
+  # ライブコンパイルは行わない(事前にコンパイルしたものを表示させる)
+  config.assets.compile = false
+
+
+
+  # ====== i18n ======
+  # 翻訳がうまく見つからない場合はデフォルトロケールで翻訳
+  config.i18n.fallbacks = true
+
+
+
+  # ====== その他 ======
+  # /publicフォルダ配下にある制定ファイルのサービングを行うかどうか
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+
+  # Railsの非推奨警告を表示させない
+  config.active_support.report_deprecations = false
+
+  # マイグレーションが実行されてもschemaは更新しない
   config.active_record.dump_schema_after_migration = false
 end
+
