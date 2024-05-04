@@ -20,6 +20,7 @@ gem 'whenever'
 gem 'rails-i18n'
 gem 'enum_help'
 gem 'letter_opener_web'
+gem 'foreman'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
