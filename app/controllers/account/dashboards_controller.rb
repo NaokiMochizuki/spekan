@@ -1,5 +1,5 @@
-class Account::DashboardsController < ApplicationController
+class Account::DashboardsController < AccountController
 
-  def index
-  end
+  def index; end
+
 end

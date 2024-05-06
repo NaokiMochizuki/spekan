@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   namespace :account do
     root 'dashboards#index'
+    resources :dashboards, only: :index
   end
 end

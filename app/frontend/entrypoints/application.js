@@ -1,14 +1,15 @@
 // JS
 import { createApp } from 'vue';
 import store from '../store'
-import DashboardIndex from '../pages/account/dashboard/Index.vue'
+import router from '../router/'
+import Layout from '../layouts/index.vue'
 
 // CSS
 import '../stylesheets/application.scss';
 
-
 // Vueの適応
-const dashboardIndexPage = createApp(DashboardIndex)
-dashboardIndexPage.use(store)
-dashboardIndexPage.mount('#app')
+const accountPage = createApp(Layout)
+accountPage.use(store)
+accountPage.use(router)
+accountPage.mount('#app')
 
