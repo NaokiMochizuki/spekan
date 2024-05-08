@@ -1,55 +1,68 @@
 <template lang="">
   <div id="responsive-overlay" @click="mainContentFn"></div>
-    <aside class="app-sidebar sticky" :class="{'sticky-pin' : menuOverflowed}" id="sidebar">
-      <div class="main-sidebar-header">
-        <router-link  :to='`${url}`' class="header-logo">
-          <img src="../../../images/template/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
-          <img src="../../../images/template/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
-          <img src="../../../images/template/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
-          <img src="../../../images/template/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
-          <img src="../../../images/template/brand-logos/desktop-white.png" alt="logo" class="desktop-white">
-          <img src="../../../images/template/brand-logos/toggle-white.png" alt="logo" class="toggle-white">
-        </router-link>
-      </div>
+  <aside class="app-sidebar sticky" :class="{'sticky-pin' : menuOverflowed}" id="sidebar">
+    <div class="main-sidebar-header">
+      <router-link  :to='`${url}`' class="header-logo">
+        <img src="../../../images/template/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+        <img src="../../../images/template/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
+        <img src="../../../images/template/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+        <img src="../../../images/template/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
+        <img src="../../../images/template/brand-logos/desktop-white.png" alt="logo" class="desktop-white">
+        <img src="../../../images/template/brand-logos/toggle-white.png" alt="logo" class="toggle-white">
+      </router-link>
+    </div>
 
-      <simplebar data-simplebar-auto-hide="false" class="main-sidebar" id="sidebar-scroll">
-        <nav class="main-menu-container nav nav-pills flex-column sub-open">
-          <div class="slide-left" id="slide-left" @click="leftArrowFn">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
-          </div>
-          <ul class="main-menu">
-            <li v-for="(mainmenuItem, index) in menuData" :key="index"
-              :class="`${mainmenuItem.headTitle ? 'slide__category' : ''} ${mainmenuItem?.type == 'link'? 'slide' : ''} ${mainmenuItem?.type == 'empty'? 'slide' : ''} ${mainmenuItem?.type == 'sub' ? 'slide has-sub' : ''} ${mainmenuItem?.active && mainmenuItem?.type == 'sub' ? 'open' : ''} ${mainmenuItem?.selected ? 'active' : ''}`">
-              <template v-if="mainmenuItem.headTitle">
-                <span class="category-name">{{ mainmenuItem.headTitle }}</span>
-              </template>
-              <template v-if="mainmenuItem?.type === 'link'">
-                <router-link  :to="mainmenuItem.path" class="side-menu__item" :class="`${mainmenuItem.selected ? 'active' : ''}`" ><span class="shape1"></span><span class="shape2"></span>
-                  <i :class="`${mainmenuItem.icon} side-menu__icon`"></i>
-                  <span class="side-menu__label">{{ mainmenuItem.title }}<span v-if="mainmenuItem.badge" :class="`badge ${mainmenuItem.badgeColor} ms-1`">{{ mainmenuItem.badge }}</span></span>
-                  </router-link >
-                </template>
-                <template v-if="mainmenuItem?.type === 'empty'">
-                  <router-link  href="javascript:;" class="side-menu__item"><span class="shape1"></span><span class="shape2"></span>
-                    <i :class="`${mainmenuItem.icon} side-menu__icon`"></i>
-                    <span class="side-menu__label">{{ mainmenuItem.title }}<span v-if="mainmenuItem.badge" :class="`badge ${mainmenuItem.badgeColor} ms-1`">{{ mainmenuItem.badge }}</span></span>
-                    </router-link >
-                  </template>
-                  <template v-if="mainmenuItem?.type === 'sub'">
-                    <RecursiveMenu
-                      :menuData="mainmenuItem"
-                      :toggleSubmenu="toggleSubmenu"
-                      :HoverToggleInnerMenuFn="HoverToggleInnerMenuFn"
-                      :level="level + 1"
-                      />
-                  </template>
-                </li>
-              </ul>
-              <div class="slide-right" @click="rightArrowFn" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path> </svg></div>
-            </nav>
-          </simplebar>
-    </aside>
-    <div ref="preventpagejump" class="prevent-page-jump"></div>
+    <simplebar data-simplebar-auto-hide="false" class="main-sidebar" id="sidebar-scroll">
+      <nav class="main-menu-container nav nav-pills flex-column sub-open">
+        <div class="slide-left" id="slide-left" @click="leftArrowFn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+          </svg>
+        </div>
+        <ul class="main-menu">
+          <li v-for="(mainmenuItem, index) in menuData" :key="index"
+            :class="`${mainmenuItem.headTitle ? 'slide__category' : ''} ${mainmenuItem?.type == 'link'? 'slide' : ''} ${mainmenuItem?.type == 'empty'? 'slide' : ''} ${mainmenuItem?.type == 'sub' ? 'slide has-sub' : ''} ${mainmenuItem?.active && mainmenuItem?.type == 'sub' ? 'open' : ''} ${mainmenuItem?.selected ? 'active' : ''}`">
+            <template v-if="mainmenuItem.headTitle">
+              <span class="category-name">{{ mainmenuItem.headTitle }}</span>
+            </template>
+            <template v-if="mainmenuItem?.type === 'link'">
+              <router-link  :to="mainmenuItem.path" class="side-menu__item" :class="`${mainmenuItem.selected ? 'active' : ''}`" >
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i :class="`${mainmenuItem.icon} side-menu__icon`"></i>
+                <span class="side-menu__label">{{ mainmenuItem.title }}
+                  <span v-if="mainmenuItem.badge" :class="`badge ${mainmenuItem.badgeColor} ms-1`">{{ mainmenuItem.badge }}</span>
+                </span>
+              </router-link >
+            </template>
+            <template v-if="mainmenuItem?.type === 'empty'">
+              <router-link  href="javascript:;" class="side-menu__item">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i :class="`${mainmenuItem.icon} side-menu__icon`"></i>
+                <span class="side-menu__label">{{ mainmenuItem.title }}
+                  <span v-if="mainmenuItem.badge" :class="`badge ${mainmenuItem.badgeColor} ms-1`">{{ mainmenuItem.badge }}</span>
+                </span>
+              </router-link >
+            </template>
+            <template v-if="mainmenuItem?.type === 'sub'">
+              <RecursiveMenu
+                :menuData="mainmenuItem"
+                :toggleSubmenu="toggleSubmenu"
+                :HoverToggleInnerMenuFn="HoverToggleInnerMenuFn"
+                :level="level + 1" />
+            </template>
+          </li>
+        </ul>
+        <div class="slide-right" @click="rightArrowFn" id="slide-right">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+          </svg>
+        </div>
+      </nav>
+    </simplebar>
+  </aside>
+  <div ref="preventpagejump" class="prevent-page-jump"></div>
 </template>
 
 <script>
