@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from '../layouts/index.vue'
 import accountDashbordIndex from '../pages/account/dashboard/Index.vue'
+import accountUserIndex from '../pages/account/user/Index.vue'
 
 const routes = [
   {
@@ -8,12 +9,13 @@ const routes = [
     children: [
       {
         path: '/account',
-        redirect: '/account/dashboards',
+        name: 'AccountDashboard',
         component: accountDashbordIndex,
       },
       {
-        path: '/account/dashboards',
-        component: accountDashbordIndex,
+        path: '/account/users',
+        name: 'AccountUser',
+        component: accountUserIndex,
       },
     ]
   }

@@ -19,8 +19,8 @@ export let menuData = [
     defaultActive: false,
     children: [
       {
-        path: `${import.meta.env.BASE_URL}crypto/crypto-dashboard`,
-        title: "Dashboard",
+        path: '/account/users',
+        title: "顧客一覧",
         type: "link",
         active: false,
         defaultActive: false,
