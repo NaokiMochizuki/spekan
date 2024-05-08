@@ -1,6 +1,8 @@
 <template>
   <div @click="scrollToTop()" :class="['back-to-top-btn', { 'go-top': isTop }]">
-    <div><i class="fe fe-arrow-up fs-14 pr-10"></i></div>
+    <div>
+      <i class="fa-solid fa-arrow-up fs-14 pr-10"></i>
+    </div>
   </div>
 </template>
 <script>

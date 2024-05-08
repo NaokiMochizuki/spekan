@@ -717,19 +717,19 @@ vue-good-table-next
   --menu-bg: #0e0e23;
 }
 [data-menu-styles=dark][data-theme-mode=light][data-bg-img=bgimg1] {
-  --menu-bg: url("/images/menu-bg-images/bg-img1.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img1.jpg");
 }
 [data-menu-styles=dark][data-theme-mode=light][data-bg-img=bgimg2] {
-  --menu-bg: url("/images/menu-bg-images/bg-img2.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img2.jpg");
 }
 [data-menu-styles=dark][data-theme-mode=light][data-bg-img=bgimg3] {
-  --menu-bg: url("/images/menu-bg-images/bg-img3.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img3.jpg");
 }
 [data-menu-styles=dark][data-theme-mode=light][data-bg-img=bgimg4] {
-  --menu-bg: url("/images/menu-bg-images/bg-img4.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img4.jpg");
 }
 [data-menu-styles=dark][data-theme-mode=light][data-bg-img=bgimg5] {
-  --menu-bg: url("/images/menu-bg-images/bg-img5.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img5.jpg");
 }
 @media (min-width: 992px) {
   [data-menu-styles=dark][data-nav-layout=horizontal] .main-menu-container .slide-left, [data-menu-styles=dark][data-nav-layout=horizontal] .main-menu-container .slide-right {
@@ -1446,38 +1446,38 @@ vue-good-table-next
 }
 
 [data-bg-img=bgimg1] {
-  --menu-bg: url("/images/menu-bg-images/bg-img1.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img1.jpg");
 }
 [data-bg-img=bgimg1][data-menu-styles=transparent][data-theme-mode=dark] {
-  --menu-bg: url("/images/menu-bg-images/bg-img1.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img1.jpg");
 }
 
 [data-bg-img=bgimg2] {
-  --menu-bg: url("/images/menu-bg-images/bg-img2.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img2.jpg");
 }
 [data-bg-img=bgimg2][data-menu-styles=transparent][data-theme-mode=dark] {
-  --menu-bg: url("/images/menu-bg-images/bg-img2.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img2.jpg");
 }
 
 [data-bg-img=bgimg3] {
-  --menu-bg: url("/images/menu-bg-images/bg-img3.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img3.jpg");
 }
 [data-bg-img=bgimg3][data-menu-styles=transparent][data-theme-mode=dark] {
-  --menu-bg: url("/images/menu-bg-images/bg-img3.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img3.jpg");
 }
 
 [data-bg-img=bgimg4] {
-  --menu-bg: url("/images/menu-bg-images/bg-img4.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img4.jpg");
 }
 [data-bg-img=bgimg4][data-menu-styles=transparent][data-theme-mode=dark] {
-  --menu-bg: url("/images/menu-bg-images/bg-img4.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img4.jpg");
 }
 
 [data-bg-img=bgimg5] {
-  --menu-bg: url("/images/menu-bg-images/bg-img5.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img5.jpg");
 }
 [data-bg-img=bgimg5][data-menu-styles=transparent][data-theme-mode=dark] {
-  --menu-bg: url("/images/menu-bg-images/bg-img5.jpg");
+  --menu-bg: url("../../images/template/menu-bg-images/bg-img5.jpg");
 }
 
 /* Menu Background Image Styles */
@@ -9432,7 +9432,7 @@ button {
   box-shadow: 0 0 0 0.25rem var(--black-1);
 }
 .menu-image .bgimage-input.bg-img1 {
-  background-image: url("/images/menu-bg-images/bg-img1.jpg") !important;
+  background-image: url("../../images/template/menu-bg-images/bg-img1.jpg") !important;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9441,7 +9441,7 @@ button {
   background-color: none;
 }
 .menu-image .bgimage-input.bg-img2 {
-  background-image: url("/images/menu-bg-images/bg-img2.jpg") !important;
+  background-image: url("../../images/template/menu-bg-images/bg-img2.jpg") !important;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9450,7 +9450,7 @@ button {
   background-color: none;
 }
 .menu-image .bgimage-input.bg-img3 {
-  background-image: url("/images/menu-bg-images/bg-img3.jpg") !important;
+  background-image: url("../../images/template/menu-bg-images/bg-img3.jpg") !important;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9459,7 +9459,7 @@ button {
   background-color: none;
 }
 .menu-image .bgimage-input.bg-img4 {
-  background-image: url("/images/menu-bg-images/bg-img4.jpg") !important;
+  background-image: url("../../images/template/menu-bg-images/bg-img4.jpg") !important;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9468,7 +9468,7 @@ button {
   background-color: none;
 }
 .menu-image .bgimage-input.bg-img5 {
-  background-image: url("/images/menu-bg-images/bg-img5.jpg") !important;
+  background-image: url("../../images/template/menu-bg-images/bg-img5.jpg") !important;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9531,7 +9531,7 @@ button {
   background-image: linear-gradient(to right top, var(--primary-color), #6e72a8);
 }
 .theme-colors .switch-select .color-input.color-transparent {
-  background-image: url("/images/menu-bg-images/transparent.png") !important;
+  background-image: url("../../images/template/menu-bg-images/transparent.png") !important;
 }
 .theme-colors .switch-select .color-input.color-bg-1 {
   background-color: rgb(20, 30, 96);
@@ -10101,7 +10101,7 @@ button {
   position: relative;
   width: 100%;
   height: 25rem;
-  background-image: url("/images/media/media-67.jpg");
+  background-image: url("../../images/template/media/media-67.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -10358,7 +10358,7 @@ button {
 /* End:: Create Blog */
 /* Start:: Profile */
 .main-profile-cover {
-  background-image: url("/images/media/team-covers/4.jpg");
+  background-image: url("../../images/template/media/team-covers/4.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10453,7 +10453,7 @@ button {
 
 .aboutus-banner {
   width: 100%;
-  background-image: url("/images/media/media-68.jpg");
+  background-image: url("../../images/template/media/media-68.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11099,7 +11099,7 @@ button {
   content: "";
   height: 100%;
   width: 100%;
-  background-image: url("/images/media/media-1.jpg");
+  background-image: url("../../images/template/media/media-1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12483,11 +12483,11 @@ a.glightbox.card {
   }
 }
 .blogBg5 {
-  background: url("/images/media/jobs-landing/blog/5.jpg") center center;
+  background: url("../../images/template/media/jobs-landing/blog/5.jpg") center center;
 }
 
 .blogBg6 {
-  background: url("/images/media/jobs-landing/blog/6.jpg") center center;
+  background: url("../../images/template/media/jobs-landing/blog/6.jpg") center center;
 }
 
 .dropzone__message {
@@ -20501,7 +20501,7 @@ a.tag-addon:hover {
 }
 
 .bg-background2 {
-  background: url("/images/media/media-73.jpg");
+  background: url("../../images/template/media/media-73.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -22440,7 +22440,7 @@ table.dataTable thead .sorting_asc_disabled:after,
   height: 100%;
   width: 100%;
   inset-block-start: 0;
-  background-image: url("/images/media/backgrounds/5.jpg");
+  background-image: url("../../images/template/media/backgrounds/5.jpg");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -22460,7 +22460,7 @@ table.dataTable thead .sorting_asc_disabled:after,
 .bg-banner-2 {
   position: relative;
   inset-block-start: 0;
-  background-image: url("/images/media/backgrounds/4.png");
+  background-image: url("../../images/template/media/backgrounds/4.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22719,7 +22719,7 @@ table.dataTable thead .sorting_asc_disabled:after,
   color: #fff;
   position: relative;
   border-radius: 0px;
-  background: url("/landing/images/2.jpg") center center;
+  background: url("../../images/template/landing/images/2.jpg") center center;
   padding: 50px 0;
 }
 .landing-body .testimonial-owl-landing::before {
@@ -22816,7 +22816,7 @@ table.dataTable thead .sorting_asc_disabled:after,
   width: 100%;
   height: 100%;
   inset-block-start: 0;
-  background-image: url("/landing/images/2.jpg");
+  background-image: url("../../images/template/landing/images/2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -24163,7 +24163,7 @@ ul.inbox-pagination {
   -webkit-box-pack: end;
   justify-content: flex-end;
   overflow: hidden;
-  background: url("/images/media/media-3.jpg") no-repeat;
+  background: url("../../images/template/media/media-3.jpg") no-repeat;
   background-size: cover;
 }
 .profile-cover__action > .btn {
