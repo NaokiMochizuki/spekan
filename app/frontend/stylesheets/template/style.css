@@ -9128,7 +9128,7 @@ button {
   .app-content {
     min-height: calc(100vh - 7.5rem);
     margin-block-end: 0;
-    margin-block-start: 4rem;
+    margin-block-start: 2rem;
     margin-inline-start: 7rem;
     transition: all 0.05s ease;
   }

@@ -1,4 +1,5 @@
 <template>
+  <Pageheader heading="ダッシュボード" :maintitle='["Top", "Dashboard"]'></Pageheader>
   <div>
     <button @click="increment">Count is: {{ count }}</button>
   </div>
@@ -6,8 +7,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import Pageheader from '../../../components/shared/pageheader/pageheader.vue'
 export default {
   name: 'accountDashbordIndex',
+  components: { Pageheader },
   data() {
     return {
     }
@@ -23,5 +26,6 @@ export default {
 
 <style>
 </style>
+
 
 

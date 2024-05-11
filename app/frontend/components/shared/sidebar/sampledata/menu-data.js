@@ -4,22 +4,22 @@ export let menuData = [
     headTitle: "dashboard",
   },
   {
-    path: `${import.meta.env.BASE_URL}dashboard`,
-    title: "Dashboard",
+    path: '/client',
+    title: "ダッシュボード",
     type: "link",
     icon: "ti-home",
     active: true,
     defaultActive: false,
   },
   {
-    title: "Crypto Currencies",
+    title: "顧客管理",
     icon: "ti-wallet",
     type: "sub",
     active: false,
     defaultActive: false,
     children: [
       {
-        path: '/account/users',
+        path: '/client/users',
         title: "顧客一覧",
         type: "link",
         active: false,

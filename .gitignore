@@ -37,6 +37,7 @@
 /vendor/bundle
 .DS_Store
 tags.lock
+firebase-massaging-sw.js
 
 # Vite Ruby
 /public/vite*

@@ -1,21 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from '../layouts/index.vue'
-import accountDashbordIndex from '../pages/account/dashboard/Index.vue'
-import accountUserIndex from '../pages/account/user/Index.vue'
+import clientDashbordIndex from '../pages/client/dashboard/Index.vue'
+import clientUserIndex from '../pages/client/user/Index.vue'
 
 const routes = [
   {
     component: Layout,
     children: [
       {
-        path: '/account',
-        name: 'AccountDashboard',
-        component: accountDashbordIndex,
+        path: '/client',
+        name: 'ClientDashboard',
+        component: clientDashbordIndex,
       },
       {
-        path: '/account/users',
-        name: 'AccountUser',
-        component: accountUserIndex,
+        path: '/client/users',
+        name: 'ClientUser',
+        component: clientUserIndex,
       },
     ]
   }

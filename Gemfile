@@ -21,6 +21,7 @@ gem 'rails-i18n'
 gem 'enum_help'
 gem 'letter_opener_web'
 gem 'foreman'
+gem 'devise'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
