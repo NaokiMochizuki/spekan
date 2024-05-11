@@ -28,7 +28,7 @@
           <table class="table card-table table-vcenter text-nowrap mb-0 border">
             <thead>
               <tr>
-                <th class="wd-lg-10p">Task</th>
+                <th class="wd-lg-10p"></th>
                 <th class="wd-lg-20p text-center">顧客名</th>
                 <th class="wd-lg-20p text-center"></th>
                 <th class="wd-lg-20p">Priority</th>
@@ -36,11 +36,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr v-for="(user, index) in users" :key="user.id">
                 <td class="fw-medium">
                   <div class="form-check">
                     <input checked="" type="checkbox" class="form-check-input me-4 rounded">
-                    <label class="form-check-label">Evaluating the design</label>
+                    <label class="form-check-label">{{user.name}}</label>
                   </div>
                 </td>
                 <td class="text-nowrap">
@@ -65,93 +65,7 @@
                   <span class="badge bg-pill rounded-pill bg-primary-transparent">Completed</span>
                 </td>
               </tr>
-              <tr>
-                <td class="fw-medium">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input me-4 rounded">
-                    <label class="form-check-label">Generate ideas for design</label>
-                  </div>
-                </td>
-                <td class="text-nowrap">
-                  <div class="avatar-list-stacked my-auto float-end">
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/5.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/6.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/7.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/8.jpg" />
-                    </div>
-                  </div>
-                </td>
-                <td class="text-center">37<i class=""></i></td>
-                <td class="text-secondary">Normal</td>
-                <td>
-                  <span class="badge bg-pill rounded-pill bg-warning-transparent">Pending</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="fw-medium">
-                  <div class="form-check">
-                    <input checked="" type="checkbox" class="form-check-input me-4 rounded">
-                    <label class="form-check-label">Define the problem</label>
-                  </div>
-                </td>
-                <td class="text-nowrap">
-                  <div class="avatar-list-stacked my-auto float-end">
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/11.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/12.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/9.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/10.jpg" />
-                    </div>
-                  </div>
-                </td>
-                <td class="text-center">37<i class=""></i></td>
-                <td class="text-warning">Low</td>
-                <td>
-                  <span class="badge bg-pill rounded-pill bg-primary-transparent">Completed</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="fw-medium">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input me-4 rounded">
-                    <label class="form-check-label">Empathize with users</label>
-                  </div>
-                </td>
-                <td class="text-nowrap">
-                  <div class="avatar-list-stacked my-auto float-end">
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/7.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/9.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/11.jpg" />
-                    </div>
-                    <div class="avatar-sm avatar">
-                      <img alt="avatar" class="rounded-circle" src="../../../images/template/faces/12.jpg" />
-                    </div>
-                  </div>
-                </td>
-                <td class="text-center">37<i class=""></i></td>
-                <td class="text-primary">High</td>
-                <td>
-                  <span class="badge bg-pill rounded-pill bg-danger-transparent">Rejected</span>
-                </td>
-              </tr>
+
             </tbody>
           </table>
         </div>
