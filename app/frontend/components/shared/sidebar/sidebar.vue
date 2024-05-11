@@ -67,7 +67,7 @@
 
 <script>
 import RecursiveMenu from './recursiveMenu.vue';
-import { menuData } from './sampledata/menu-data.js';
+import { menuData } from '../../../data/sidebar/menu.js';
 import { watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 export default {

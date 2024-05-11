@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_11_051528) do
     t.string "name_kana"
     t.string "email"
     t.text "password_digest"
-    t.integer "role"
+    t.integer "role", default: 1
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

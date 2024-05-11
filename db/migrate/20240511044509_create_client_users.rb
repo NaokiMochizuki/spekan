@@ -6,7 +6,7 @@ class CreateClientUsers < ActiveRecord::Migration[7.0]
       t.string :name_kana
       t.string :email
       t.text :password_digest
-      t.integer :role
+      t.integer :role, default: 1
       t.datetime :deleted_at
       t.timestamps
     end

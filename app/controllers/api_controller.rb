@@ -1,5 +1,6 @@
-class ClientController < ApplicationController
-  layout 'client/layouts/application'
+class ApiController < ApplicationController
+  # TODO: ログイン機能できたら消す
+  before_action :dummy_login
 
   def current_client_user
     if session[:client_user_id].present?
@@ -17,10 +18,8 @@ class ClientController < ApplicationController
   helper_method :current_client
 
   private
-
-  def authenticate_client_user!
-    if session[:client_user_id].nil?
-      redirect_to admin_sign_in_path, warning: 'ログインが必要です。'
-    end
+  def dummy_login
+    session[:client_user_id] = 1
   end
+
 end

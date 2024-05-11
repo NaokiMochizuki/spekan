@@ -187,14 +187,32 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import axios from 'axios'
 import Pageheader from '../../../components/shared/pageheader/pageheader.vue'
 export default {
   name: 'accountUserIndex',
   components: { Pageheader },
+  async mounted(){
+    await this.fetchUsers()
+  },
   data() {
     return {
     }
   },
+  computed: {
+    ...mapState('user', ['users']),
+  },
+  methods: {
+    async fetchUsers() {
+      try {
+        const res = await axios.get('/api/client/users')
+        this.setUsers(res.data)
+      } catch {
+        alert('ERROR')
+      }
+    },
+    ...mapActions('user', ['setUsers'])
+  }
 
 }
 </script>
