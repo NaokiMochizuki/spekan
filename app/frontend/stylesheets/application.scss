@@ -18,12 +18,30 @@
 @import url("./icon-fonts/cryptofont/css/cryptofont.min.css");
 
 .open {
-    display: block;
+  display: block;
 }
 .hu-color-picker{
-    width: min-content !important;
-    .colors .item:nth-child(8n+1) {
-        margin-left: 10px !important;
-    }
+  width: min-content !important;
+  .colors .item:nth-child(8n+1) {
+    margin-left: 10px !important;
+  }
+}
+
+.btn-success-transparent {
+  background-color: rgba(var(--success-rgb), 0.1);
+  border-color: rgba(var(--success-rgb), 0.1);
+  color: rgb(var(--success-rgb));
+}
+
+.btn-info-transparent {
+  background-color: rgba(var(--info-rgb), 0.1);
+  border-color: rgba(var(--info-rgb), 0.1);
+  color: rgb(var(--info-rgb));
+}
+
+.btn-danger-transparent {
+  background-color: rgba(var(--danger-rgb), 0.1);
+  border-color: rgba(var(--danger-rgb), 0.1);
+  color: rgb(var(--danger-rgb));
 }
 
