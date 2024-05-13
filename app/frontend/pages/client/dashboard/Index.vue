@@ -122,6 +122,11 @@
         </div>
       </div>
     </div>
+
+
+
+
+
     <div class="row row-sm">
       <div class="col-sm-12 col-lg-12 col-xl-8">
         <div class="card custom-card overflow-hidden">
@@ -141,136 +146,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-lg-12 col-xl-4">
-        <div class="card custom-card card-dashboard-calendar">
-          <label class="main-content-label mb-2 pt-1">本日の予約一覧</label>
-          <span class="d-block fs-12 mb-2 text-muted">Projects where development work is on completion</span>
-          <table class="table m-b-0 transcations mt-2">
-            <tbody>
-              <tr>
-                <td class="wd-5p">
-                  <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-middle ms-3">
-                    <div class="d-inline-block">
-                      <h6 class="mb-1">Flicker</h6>
-                      <p class="mb-0 fs-13 text-muted">App improvement</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end">
-                  <div class="d-inline-block">
-                    <h6 class="mb-2 fs-15 fw-semibold">
-                      $45.234<i class="fas fa-level-up-alt ms-2 text-success m-l-10"></i>
-                    </h6>
-                    <p class="mb-0 text-muted">12 Jan 2020</p>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="wd-5p">
-                  <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/6.jpg" />
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-middle ms-3">
-                    <div class="d-inline-block">
-                      <h6 class="mb-1">Intoxica</h6>
-                      <p class="mb-0 fs-13 text-muted">Milestone</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end">
-                  <div class="d-inline-block">
-                    <h6 class="mb-2 fs-15 fw-semibold">
-                      $23.452<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
-                    </h6>
-                    <p class="mb-0 text-muted">23 Jan 2020</p>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="wd-5p">
-                  <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-middle ms-3">
-                    <div class="d-inline-block">
-                      <h6 class="mb-1">Digiwatt</h6>
-                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end">
-                  <div class="d-inline-block">
-                    <h6 class="mb-2 fs-15 fw-semibold">
-                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
-                    </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="wd-5p">
-                  <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/8.jpg" />
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-middle ms-3">
-                    <div class="d-inline-block">
-                      <h6 class="mb-1">Flicker</h6>
-                      <p class="mb-0 fs-13 text-muted">Milestone2</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end">
-                  <div class="d-inline-block">
-                    <h6 class="mb-2 fs-15 fw-semibold">
-                      $37.285<i class="fas fa-level-up-alt ms-2 text-success m-l-10"></i>
-                    </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="wd-5p pb-0">
-                  <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/4.jpg" />
-                  </div>
-                </td>
-                <td class="pb-0">
-                  <div class="d-flex align-middle ms-3">
-                    <div class="d-inline-block">
-                      <h6 class="mb-1">Flicker</h6>
-                      <p class="mb-0 fs-13 text-muted">App improvement</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end pb-0">
-                  <div class="d-inline-block">
-                    <h6 class="mb-2 fs-15 fw-semibold">
-                      $25.341<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
-                    </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="row row-sm">
-      <div class="col-sm-12 col-lg-12 col-xl-8">
         <div class="card custom-card">
           <div class="card-header justify-content-between">
             <div class="card-title">
@@ -366,6 +241,159 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-sm-12 col-lg-12 col-xl-4">
+        <div class="card custom-card card-dashboard-calendar">
+          <label class="main-content-label mb-2 pt-1">本日の予約一覧</label>
+          <span class="d-block fs-12 mb-2 text-muted">Projects where development work is on completion</span>
+          <table class="table m-b-0 transcations mt-2">
+            <tbody>
+              <tr>
+                <td class="wd-5p">
+                  <div class="main-img-user avatar-md">
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-middle ms-3">
+                    <div class="d-inline-block">
+                      <h6 class="mb-1">Flicker</h6>
+                      <p class="mb-0 fs-13 text-muted">App improvement</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="d-inline-block">
+                    <h6 class="mb-2 fs-15 fw-semibold">
+                      $45.234<i class="fas fa-level-up-alt ms-2 text-success m-l-10"></i>
+                    </h6>
+                    <p class="mb-0 text-muted">12 Jan 2020</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wd-5p">
+                  <div class="main-img-user avatar-md">
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/6.jpg" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-middle ms-3">
+                    <div class="d-inline-block">
+                      <h6 class="mb-1">Intoxica</h6>
+                      <p class="mb-0 fs-13 text-muted">Milestone</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="d-inline-block">
+                    <h6 class="mb-2 fs-15 fw-semibold">
+                      $23.452<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                    </h6>
+                    <p class="mb-0 text-muted">23 Jan 2020</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wd-5p">
+                  <div class="main-img-user avatar-md">
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-middle ms-3">
+                    <div class="d-inline-block">
+                      <h6 class="mb-1">Digiwatt</h6>
+                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="d-inline-block">
+                    <h6 class="mb-2 fs-15 fw-semibold">
+                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                    </h6>
+                    <p class="mb-0 text-muted">4 Apr 2020</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wd-5p">
+                  <div class="main-img-user avatar-md">
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-middle ms-3">
+                    <div class="d-inline-block">
+                      <h6 class="mb-1">Digiwatt</h6>
+                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="d-inline-block">
+                    <h6 class="mb-2 fs-15 fw-semibold">
+                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                    </h6>
+                    <p class="mb-0 text-muted">4 Apr 2020</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wd-5p">
+                  <div class="main-img-user avatar-md">
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-middle ms-3">
+                    <div class="d-inline-block">
+                      <h6 class="mb-1">Digiwatt</h6>
+                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="d-inline-block">
+                    <h6 class="mb-2 fs-15 fw-semibold">
+                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                    </h6>
+                    <p class="mb-0 text-muted">4 Apr 2020</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wd-5p">
+                  <div class="main-img-user avatar-md">
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/8.jpg" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-middle ms-3">
+                    <div class="d-inline-block">
+                      <h6 class="mb-1">Flicker</h6>
+                      <p class="mb-0 fs-13 text-muted">Milestone2</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="d-inline-block">
+                    <h6 class="mb-2 fs-15 fw-semibold">
+                      $37.285<i class="fas fa-level-up-alt ms-2 text-success m-l-10"></i>
+                    </h6>
+                    <p class="mb-0 text-muted">4 Apr 2020</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-sm">
+      <div class="col-sm-12 col-lg-12 col-xl-8">
       </div>
     </div>
 
