@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Layout from '../layouts/index.vue'
 import clientDashbordIndex from '../pages/client/dashboard/Index.vue'
 import clientUserIndex from '../pages/client/user/Index.vue'
+import clientUserShow from '../pages/client/user/Show.vue'
 
 const routes = [
   {
@@ -14,8 +15,13 @@ const routes = [
       },
       {
         path: '/client/users',
-        name: 'ClientUser',
+        name: 'ClientUserIndex',
         component: clientUserIndex,
+      },
+      {
+        path: '/client/users/:id',
+        name: 'ClientUserShow',
+        component: clientUserShow,
       },
     ]
   }
