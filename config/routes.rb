@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     post '/sign_in' => 'sessions#create'
     get '/sign_out' => 'sessions#destroy'
     root 'dashboards#index'
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show, :edit]
   end
 end

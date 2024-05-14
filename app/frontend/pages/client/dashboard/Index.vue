@@ -257,132 +257,126 @@
                 <td>
                   <div class="d-flex align-middle ms-3">
                     <div class="d-inline-block">
-                      <h6 class="mb-1">Flicker</h6>
-                      <p class="mb-0 fs-13 text-muted">App improvement</p>
+                      <h6 class="mb-1">田中太郎</h6>
+                      <p class="mb-0 fs-13 text-muted">スペースA</p>
                     </div>
                   </div>
                 </td>
                 <td class="text-end">
                   <div class="d-inline-block">
                     <h6 class="mb-2 fs-15 fw-semibold">
-                      $45.234<i class="fas fa-level-up-alt ms-2 text-success m-l-10"></i>
+                      11:00~12:00
                     </h6>
-                    <p class="mb-0 text-muted">12 Jan 2020</p>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="wd-5p">
                   <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/6.jpg" />
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
                   </div>
                 </td>
                 <td>
                   <div class="d-flex align-middle ms-3">
                     <div class="d-inline-block">
-                      <h6 class="mb-1">Intoxica</h6>
-                      <p class="mb-0 fs-13 text-muted">Milestone</p>
+                      <h6 class="mb-1">田中太郎</h6>
+                      <p class="mb-0 fs-13 text-muted">スペースA</p>
                     </div>
                   </div>
                 </td>
                 <td class="text-end">
                   <div class="d-inline-block">
                     <h6 class="mb-2 fs-15 fw-semibold">
-                      $23.452<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                      11:00~12:00
                     </h6>
-                    <p class="mb-0 text-muted">23 Jan 2020</p>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="wd-5p">
                   <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
                   </div>
                 </td>
                 <td>
                   <div class="d-flex align-middle ms-3">
                     <div class="d-inline-block">
-                      <h6 class="mb-1">Digiwatt</h6>
-                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
+                      <h6 class="mb-1">田中太郎</h6>
+                      <p class="mb-0 fs-13 text-muted">スペースA</p>
                     </div>
                   </div>
                 </td>
                 <td class="text-end">
                   <div class="d-inline-block">
                     <h6 class="mb-2 fs-15 fw-semibold">
-                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                      11:00~12:00
                     </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="wd-5p">
                   <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
                   </div>
                 </td>
                 <td>
                   <div class="d-flex align-middle ms-3">
                     <div class="d-inline-block">
-                      <h6 class="mb-1">Digiwatt</h6>
-                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
+                      <h6 class="mb-1">田中太郎</h6>
+                      <p class="mb-0 fs-13 text-muted">スペースA</p>
                     </div>
                   </div>
                 </td>
                 <td class="text-end">
                   <div class="d-inline-block">
                     <h6 class="mb-2 fs-15 fw-semibold">
-                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                      11:00~12:00
                     </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="wd-5p">
                   <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/7.jpg" />
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
                   </div>
                 </td>
                 <td>
                   <div class="d-flex align-middle ms-3">
                     <div class="d-inline-block">
-                      <h6 class="mb-1">Digiwatt</h6>
-                      <p class="mb-0 fs-13 text-muted">Sales executive</p>
+                      <h6 class="mb-1">田中太郎</h6>
+                      <p class="mb-0 fs-13 text-muted">スペースA</p>
                     </div>
                   </div>
                 </td>
                 <td class="text-end">
                   <div class="d-inline-block">
                     <h6 class="mb-2 fs-15 fw-semibold">
-                      $78.001<i class="fas fa-level-down-alt ms-2 text-danger m-l-10"></i>
+                      11:00~12:00
                     </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="wd-5p">
                   <div class="main-img-user avatar-md">
-                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/8.jpg" />
+                    <img alt="avatar" class="rounded-circle me-3" src="../../../images/template/faces/5.jpg" />
                   </div>
                 </td>
                 <td>
                   <div class="d-flex align-middle ms-3">
                     <div class="d-inline-block">
-                      <h6 class="mb-1">Flicker</h6>
-                      <p class="mb-0 fs-13 text-muted">Milestone2</p>
+                      <h6 class="mb-1">田中太郎</h6>
+                      <p class="mb-0 fs-13 text-muted">スペースA</p>
                     </div>
                   </div>
                 </td>
                 <td class="text-end">
                   <div class="d-inline-block">
                     <h6 class="mb-2 fs-15 fw-semibold">
-                      $37.285<i class="fas fa-level-up-alt ms-2 text-success m-l-10"></i>
+                      11:00~12:00
                     </h6>
-                    <p class="mb-0 text-muted">4 Apr 2020</p>
                   </div>
                 </td>
               </tr>
