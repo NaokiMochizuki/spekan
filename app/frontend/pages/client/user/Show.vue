@@ -107,15 +107,10 @@
 <script>
 import Pageheader from "../../../components/shared/pageheader/pageheader.vue"
 export default {
+  name: 'clientUserShow',
   components: { Pageheader },
   data() {
     return {
-      url: import.meta.env.BASE_URL,
-      countryValue: null,
-      countryOptions: ["India", "USA", "UK", "UAE"],
-
-      languageValue: null,
-      languageOptions: ["English", "English (United States)", "English UK", "Arabic"],
     }
   },
 

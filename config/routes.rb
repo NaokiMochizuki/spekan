@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     scope :client do
       resources :users, only: [:index]
+      resources :ranks, only: [:index]
     end
   end
 
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
     get '/sign_out' => 'sessions#destroy'
     root 'dashboards#index'
     resources :users, only: [:index, :show, :edit]
+    resources :ranks, only: [:index]
   end
 end

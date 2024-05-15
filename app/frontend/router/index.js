@@ -4,6 +4,7 @@ import clientDashbordIndex from '../pages/client/dashboard/Index.vue'
 import clientUserIndex from '../pages/client/user/Index.vue'
 import clientUserShow from '../pages/client/user/Show.vue'
 import clientUserEdit from '../pages/client/user/Edit.vue'
+import clientRankIndex from '../pages/client/rank/Index.vue'
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
         path: '/client/users/:id/edit',
         name: 'ClientUserEdit',
         component: clientUserEdit,
+      },
+      {
+        path: '/client/ranks',
+        name: 'ClientRankIndex',
+        component: clientRankIndex,
       },
     ]
   }

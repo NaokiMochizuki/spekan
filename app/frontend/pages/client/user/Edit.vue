@@ -151,6 +151,7 @@
 <script>
 import Pageheader from "../../../components/shared/pageheader/pageheader.vue"
 export default {
+  name: 'clientUserEdit',
   components: { Pageheader },
 }
 </script>

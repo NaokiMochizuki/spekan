@@ -26,8 +26,8 @@ export let menuData = [
         defaultActive: false,
       },
       {
-        path: `${import.meta.env.BASE_URL}crypto/marketcap`,
-        title: "Marketcap",
+        path: `/client/ranks`,
+        title: "ランク一覧",
         type: "link",
         active: false,
         defaultActive: false,

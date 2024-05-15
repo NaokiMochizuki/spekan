@@ -21,17 +21,15 @@ import Sidebar from '../components/shared/sidebar/sidebar.vue'
 import Footer from '../components/shared/footer/footer.vue'
 import Backtotop from '../components/shared/backtotop/backtotop.vue'
 export default {
-  name: 'accountDashbordIndex',
+  name: 'clientLayout',
   components: { Footer, Backtotop, Header, Sidebar },
   data() {
     return {
     }
   },
   computed: {
-    ...mapState('test', ['count']),
   },
   methods: {
-    ...mapActions('test', ['increment'])
   }
 }
 </script>
