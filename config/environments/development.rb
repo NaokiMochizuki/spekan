@@ -78,8 +78,4 @@ Rails.application.configure do
   # アセットパイプラインへのアクセスに関するログを出力
   config.assets.quiet = true
 
-  # ===== ホットリロード ======
-  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
-
 end
-

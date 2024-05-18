@@ -5,13 +5,12 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: spekan
-    command: ['/bin/sh', '-c', 'rm -f tmp/pids/server.pid && bin/dev']
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
       - gem_data:/usr/local/bundle
     ports:
       - "3000:3000"
-      - "35729:35729"
       - "3036:3036"
     depends_on:
       - db
