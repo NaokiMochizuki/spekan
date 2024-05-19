@@ -4,7 +4,7 @@ import store from '../store'
 import router from '../router/'
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import simplebar from 'simplebar-vue';
-import Layout from '../layouts/index.vue'
+import App from './App.vue'
 
 // CSS
 import '../stylesheets/application.scss';
@@ -17,9 +17,9 @@ library.add(fas, far, fab);
 import 'simplebar-vue/dist/simplebar.min.css';
 
 // Vueの適応
-const accountPage = createApp(Layout)
-accountPage.component("simplebar", simplebar)
-accountPage.use(store)
-accountPage.use(router)
-accountPage.mount('#app')
+const app = createApp(App)
+app.component("simplebar", simplebar)
+app.use(store)
+app.use(router)
+app.mount('#app')
 
