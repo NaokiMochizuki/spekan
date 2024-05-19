@@ -3,11 +3,13 @@
     <div>
       <h2 class="main-content-title fs-24 mb-1">{{ heading }}</h2>
       <ol class="breadcrumb mb-0">
-        <li v-for="(value, key) in maintitle" :key="key" class="breadcrumb-item"
-          :class="key == maintitle.length - 1 ? 'active' : ''">
-          <span v-if="key === maintitle.length - 1">{{ value }}</span>
+        <li v-for="(value, key) in breadcrumb" :key="key" class="breadcrumb-item"
+          :class="key == breadcrumb.length - 1 ? 'active' : ''">
+          <span v-if="key === breadcrumb.length - 1">{{ value.name }}</span>
           <span v-else>
-            <a href="javascript:void(0);">{{ value }}</a>
+            <router-link :to="value.uri">
+              <span class="link">{{value.name}}</span>
+            </router-link>
           </span>
         </li>
       </ol>
@@ -17,8 +19,8 @@
 
 <script>
 export default {
-  name: "Page-header",
-  props: ["heading", "maintitle"],
+  name: "pageHeader",
+  props: ["heading", "breadcrumb"],
 };
 </script>
 

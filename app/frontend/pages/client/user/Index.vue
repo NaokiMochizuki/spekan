@@ -1,5 +1,9 @@
 <template>
-  <Pageheader heading="顧客一覧" :maintitle='["Top", "顧客一覧"]'></Pageheader>
+  <Pageheader heading="顧客一覧"
+    :breadcrumb='[
+    {name: "Top", uri: "/client"},
+    {name: "顧客一覧", uri: "/client/users"}]'>
+  </Pageheader>
 
   <div class="row row-sm mb-5">
     <div class="accordion accordion-primary" id="accordionSearchForm">

@@ -1,6 +1,10 @@
 <template>
-  <Pageheader heading="顧客詳細" :maintitle='["Top", "顧客管理", "顧客詳細"]'></Pageheader>
-
+  <Pageheader heading="顧客詳細"
+    :breadcrumb='[
+    {name: "Top", uri: "/client"},
+    {name: "顧客一覧", uri: "/client/users"},
+    {name: "顧客詳細", uri: ""}]'>
+  </Pageheader>
 
   <div class="row row-sm">
     <div class="col-xl-3 col-lg-12 col-md-12">

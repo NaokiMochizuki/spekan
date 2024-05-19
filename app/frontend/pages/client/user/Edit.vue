@@ -1,5 +1,11 @@
 <template>
-  <Pageheader heading="顧客編集" :maintitle='["Top", "顧客管理", "顧客編集"]' />
+  <Pageheader heading="顧客詳細"
+    :breadcrumb='[
+    {name: "Top", uri: "/client"},
+    {name: "顧客一覧", uri: "/client/users"},
+    {name: "顧客編集", uri: ""}]'>
+  </Pageheader>
+
   <div class="col-xl-12">
     <div class='card custom-card'>
       <div class="card-header justify-content-between">

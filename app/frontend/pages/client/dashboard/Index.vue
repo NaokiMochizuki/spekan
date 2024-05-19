@@ -1,5 +1,5 @@
 <template>
-  <Pageheader heading="ダッシュボード" :maintitle='["Top", "Dashboard"]'></Pageheader>
+  <Pageheader heading="Dashboard"</Pageheader>
   <div class="row row-sm">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
       <div class="card custom-card">

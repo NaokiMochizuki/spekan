@@ -1,6 +1,9 @@
 <template>
-  <Pageheader heading="ランク一覧" :maintitle='["Top", "ランク一覧"]'></Pageheader>
-
+  <Pageheader heading="ランク一覧"
+    :breadcrumb='[
+    {name: "Top", uri: "/client"},
+    {name: "ランク一覧", uri: "/client/ranks"}]'>
+  </Pageheader>
 
   <div class="row row-sm">
     <div class="col-xl-12">
