@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: spekan
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: ['/bin/sh', '-c', 'rm -f tmp/pids/server.pid && bundle exec foreman start -f Procfile.dev']
     volumes:
       - .:/app
       - gem_data:/usr/local/bundle

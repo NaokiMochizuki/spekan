@@ -1,6 +1,49 @@
 <template>
   <Pageheader heading="顧客一覧" :maintitle='["Top", "顧客一覧"]'></Pageheader>
 
+  <div class="row row-sm mb-5">
+    <div class="accordion accordion-primary" id="accordionSearchForm">
+      <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSearchForm">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseSearchForm" aria-expanded="false"
+                  aria-controls="collapseSearchForm">
+                  検索
+              </button>
+          </h2>
+          <div id="collapseSearchForm" class="accordion-collapse collapse"
+              aria-labelledby="headingSearchForm" data-bs-parent="#accordionSearchForm">
+              <div class="accordion-body">
+                <div class='row'>
+                  <div class="col-md-5 mb-3">
+                      <label for="searchform-name" class="form-label fs-14">名前</label>
+                      <div class="input-group">
+                        <div class="input-group-text">
+                          <i class="ri-user-line"></i>
+                        </div>
+                        <input type="text" class="form-control" id="searchform-email" placeholder="" v-model="search.name">
+                      </div>
+                  </div>
+                  <div class="col-md-5 mb-3">
+                      <label for="searchform-email" class="form-label fs-14">メールアドレス</label>
+                      <div class="input-group">
+                        <div class="input-group-text">
+                          <i class="ri-mail-line"></i>
+                        </div>
+                        <input type="text" class="form-control" id="searchform-email" placeholder="" v-model="search.email">
+                      </div>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class="col-md-12">
+                    <button class="btn btn-primary float-end" type="submit" @click="onSearch">検索</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row row-sm">
     <div class="col-xl-12">
@@ -38,7 +81,7 @@
                     </div>
                   </td>
                   <td>ABCDEFG</td>
-                  <td>hgoehoge@example.com</td>
+                  <td>{{user.email}}</td>
                   <td>3333</td>
                   <td>
                     <span class="badge bg-primary-transparent">Team Lead</span>
@@ -109,6 +152,10 @@ export default {
   },
   data() {
     return {
+      search: {
+        name: null,
+        email: null,
+      }
     }
   },
   computed: {
@@ -117,11 +164,19 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const res = await axios.get('/api/client/users')
+        const res = await axios.get('/api/client/users', {
+          params: {
+            name: this.search.name,
+            email: this.search.email,
+          }
+        })
         this.setUsers(res.data)
       } catch {
         alert('ERROR')
       }
+    },
+    onSearch(){
+      this.fetchUsers()
     },
     moveToShowPage(userId){
       this.$router.push({ path: `/client/users/${userId}` })

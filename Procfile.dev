@@ -1,3 +1,2 @@
 vite: bin/vite dev
 web: bundle exec rails s -p 3000 -b '0.0.0.0'
-livereload: bundle exec guard start -i -g livereload

@@ -1,6 +1,7 @@
 class Api::UsersController < ApiController
 
   def index
-    @users = current_client.users
+    @users = current_client.users.search_by_params(params)
   end
+
 end
