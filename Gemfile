@@ -23,6 +23,7 @@ gem 'letter_opener_web'
 gem 'foreman'
 gem 'devise'
 gem 'ransack'
+gem 'kaminari'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

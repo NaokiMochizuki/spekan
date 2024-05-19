@@ -111,24 +111,39 @@
             </table>
           </div>
           <div class="float-end mt-3">
-            <nav aria-label="Page navigation" class="pagination-style-3">
+            <nav aria-label="Page navigation" class="pagination-style-3" v-if="page.total != 1">
               <ul class="pagination mb-0 flex-wrap">
-                <li class="page-item disabled">
-                  <a class="page-link" href="javascript:void(0);">
-                    Prev
+                <li class="page-item" :class="{ disabled: page.current == 1 }">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(page.current - 1)">
+                    前へ
                   </a>
                 </li>
-                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0);">
-                    <i class="bi bi-three-dots"></i>
-                  </a>
+                <li class="page-item" v-if="page.current - 2 > 1">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(1)">1</a>
                 </li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">16</a></li>
+                <span v-if="page.current - 3 > 1">...</span>
+                <li class="page-item" v-if="page.current - 2 >= 1">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(page.current - 2)">{{page.current - 2}}</a>
+                </li>
+                <li class="page-item" v-if="page.current - 1 >= 1">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(page.current - 1)">{{page.current - 1}}</a>
+                </li>
                 <li class="page-item">
-                  <a class="page-link text-primary" href="javascript:void(0);">
-                    next
+                  <a class="page-link active" href="javascript:void(0);" @click="onPageChange(page.current)">{{page.current}}</a>
+                </li>
+                <li class="page-item" v-if="page.current + 1 <= page.total">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(page.current + 1)">{{page.current + 1}}</a>
+                </li>
+                <li class="page-item" v-if="page.current + 2 <= page.total">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(page.current + 2)">{{page.current + 2}}</a>
+                </li>
+                <span v-if="page.total > page.current + 3">...</span>
+                <li class="page-item" v-if="page.total >= page.current + 3">
+                  <a class="page-link" href="javascript:void(0);" @click="onPageChange(page.total)">{{page.total}}</a>
+                </li>
+                <li class="page-item" :class="{ disabled: page.total == page.current }">
+                  <a class="page-link text-primary" href="javascript:void(0);" @click="onPageChange(page.current + 1)">
+                    次へ
                   </a>
                 </li>
               </ul>
@@ -155,6 +170,10 @@ export default {
       search: {
         name: null,
         email: null,
+      },
+      page: {
+        current: 1,
+        total: 1,
       }
     }
   },
@@ -168,9 +187,12 @@ export default {
           params: {
             name: this.search.name,
             email: this.search.email,
+            page: this.page.current,
           }
         })
-        this.setUsers(res.data)
+        this.page.current = res.data.pagination.current_page
+        this.page.total = res.data.pagination.total_pages
+        this.setUsers(res.data.users)
       } catch {
         alert('ERROR')
       }
@@ -188,6 +210,11 @@ export default {
       if(confirm(`ID: ${user.id}: ${user.name}を削除します(今後の予約は全て自動で削除され、未精算金額がある場合は即時引き落としがかかります。) よろしいですか？`)){
         //TODO: ここで削除処理
       }
+    },
+    //TODO: ここからページネーション処理、後で別コンポーネントに切り出し
+    onPageChange(page){
+      this.page.current = page
+      this.fetchUsers()
     },
     ...mapActions('user', ['setUsers'])
   }
