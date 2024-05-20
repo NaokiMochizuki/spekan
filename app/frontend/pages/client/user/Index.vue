@@ -5,49 +5,7 @@
     {name: "顧客一覧", uri: "/client/users"}]'>
   </Pageheader>
 
-  <div class="row row-sm mb-5">
-    <div class="accordion accordion-primary" id="accordionSearchForm">
-      <div class="accordion-item">
-          <h2 class="accordion-header" id="headingSearchForm">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseSearchForm" aria-expanded="false"
-                  aria-controls="collapseSearchForm">
-                  検索
-              </button>
-          </h2>
-          <div id="collapseSearchForm" class="accordion-collapse collapse"
-              aria-labelledby="headingSearchForm" data-bs-parent="#accordionSearchForm">
-              <div class="accordion-body">
-                <div class='row'>
-                  <div class="col-md-5 mb-3">
-                      <label for="searchform-name" class="form-label fs-14">名前</label>
-                      <div class="input-group">
-                        <div class="input-group-text">
-                          <i class="ri-user-line"></i>
-                        </div>
-                        <input type="text" class="form-control" id="searchform-email" placeholder="" v-model="search.name">
-                      </div>
-                  </div>
-                  <div class="col-md-5 mb-3">
-                      <label for="searchform-email" class="form-label fs-14">メールアドレス</label>
-                      <div class="input-group">
-                        <div class="input-group-text">
-                          <i class="ri-mail-line"></i>
-                        </div>
-                        <input type="text" class="form-control" id="searchform-email" placeholder="" v-model="search.email">
-                      </div>
-                  </div>
-                </div>
-                <div class='row'>
-                  <div class="col-md-12">
-                    <button class="btn btn-primary float-end" type="submit" @click="onSearch">検索</button>
-                  </div>
-                </div>
-              </div>
-          </div>
-      </div>
-    </div>
-  </div>
+  <SearchForm @fetchUsers="fetchUsers"/>
 
   <div class="row row-sm">
     <div class="col-xl-12">
@@ -163,18 +121,15 @@
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
 import Pageheader from '../../../components/shared/pageheader/pageheader.vue'
+import SearchForm from '../../../components/client/user/SearchForm.vue'
 export default {
   name: 'clientUserIndex',
-  components: { Pageheader },
+  components: { Pageheader, SearchForm },
   async mounted(){
     await this.fetchUsers()
   },
   data() {
     return {
-      search: {
-        name: null,
-        email: null,
-      },
       page: {
         current: 1,
         total: 1,
@@ -185,12 +140,12 @@ export default {
     ...mapState('user', ['users']),
   },
   methods: {
-    async fetchUsers() {
+    async fetchUsers(search={}) {
       try {
         const res = await axios.get('/api/client/users', {
           params: {
-            name: this.search.name,
-            email: this.search.email,
+            name: search.name,
+            email: search.email,
             page: this.page.current,
           }
         })
@@ -200,9 +155,6 @@ export default {
       } catch {
         alert('ERROR')
       }
-    },
-    onSearch(){
-      this.fetchUsers()
     },
     moveToShowPage(userId){
       this.$router.push({ path: `/client/users/${userId}` })
