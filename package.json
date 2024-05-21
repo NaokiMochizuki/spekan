@@ -21,6 +21,7 @@
     "simplebar-vue": "^2.3.4",
     "vue-router": "^4.3.2",
     "vue3-apexcharts": "^1.5.2",
+    "vue3-toastify": "^0.2.1",
     "vuex": "^4.1.0"
   },
   "scripts": {

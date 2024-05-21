@@ -1,10 +1,12 @@
 <template>
+  <ToastAlert ref="toastAlertRef"/>
   <Pageheader heading="顧客一覧"
     :breadcrumb='[
     {name: "Top", uri: "/client"},
     {name: "顧客一覧", uri: "/client/users"}]'
     iconClass="ti-user">
   </Pageheader>
+
 
   <SearchForm @fetchUsers="fetchUsers"/>
 
@@ -86,9 +88,10 @@ import axios from 'axios'
 import Pageheader from '../../../components/shared/PageHeader.vue'
 import SearchForm from '../../../components/client/user/SearchForm.vue'
 import Pagination from '../../../components/shared/Pagination.vue'
+import ToastAlert from '../../../components/shared/ToastAlert.vue'
 export default {
   name: 'clientUserIndex',
-  components: { Pageheader, SearchForm, Pagination },
+  components: { Pageheader, SearchForm, Pagination, ToastAlert },
   async mounted(){
     await this.fetchUsers()
   },
