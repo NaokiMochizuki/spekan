@@ -1,5 +1,5 @@
 <template>
-  <Pageheader heading="Dashboard"</Pageheader>
+  <Pageheader heading="ダッシュボード"</Pageheader>
   <div class="row row-sm">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
       <div class="card custom-card">
@@ -395,7 +395,7 @@
 </template>
 
 <script>
-import Pageheader from '../../../components/shared/pageheader/pageheader.vue'
+import Pageheader from '../../../components/shared/PageHeader.vue'
 import Apexchart from '../../../components/shared/chart/apexcharts.vue'
 import { projectOptions, projectData } from '../../../data/dashboard/dashboardData.js';
 export default {

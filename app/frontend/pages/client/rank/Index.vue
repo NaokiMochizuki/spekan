@@ -1,8 +1,10 @@
 <template>
-  <Pageheader heading="ランク一覧"
+  <Pageheader
+    heading="ランク一覧"
     :breadcrumb='[
     {name: "Top", uri: "/client"},
-    {name: "ランク一覧", uri: "/client/ranks"}]'>
+    {name: "ランク一覧", uri: "/client/ranks"}]'
+    iconClass="ti-crown">
   </Pageheader>
 
   <div class="row row-sm">
@@ -95,7 +97,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
-import Pageheader from '../../../components/shared/pageheader/pageheader.vue'
+import Pageheader from '../../../components/shared/PageHeader.vue'
 export default {
   name: 'clientRankIndex',
   components: { Pageheader },

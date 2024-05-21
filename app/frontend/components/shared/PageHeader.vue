@@ -1,7 +1,10 @@
 <template>
   <div class="d-md-flex d-block align-items-center justify-content-between page-header-breadcrumb">
     <div>
-      <h2 class="main-content-title fs-24 mb-1">{{ heading }}</h2>
+      <h2 class="main-content-title fs-24 mb-1">
+        <i :class='iconClass' />
+        {{ heading }}
+      </h2>
       <ol class="breadcrumb mb-0">
         <li v-for="(value, key) in breadcrumb" :key="key" class="breadcrumb-item"
           :class="key == breadcrumb.length - 1 ? 'active' : ''">
@@ -20,9 +23,10 @@
 <script>
 export default {
   name: "pageHeader",
-  props: ["heading", "breadcrumb"],
+  props: ["heading", "breadcrumb", "iconClass"],
 };
 </script>
 
 <style scoped></style>
+
 

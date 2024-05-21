@@ -10,7 +10,7 @@
       </div>
       <Footer />
     </div>
-    <Backtotop />
+    <BackToTop />
   </div>
 </template>
 
@@ -19,10 +19,10 @@ import { mapState, mapActions } from 'vuex'
 import Header from '../components/shared/header/header.vue'
 import Sidebar from '../components/shared/sidebar/sidebar.vue'
 import Footer from '../components/shared/footer/footer.vue'
-import Backtotop from '../components/shared/backtotop/backtotop.vue'
+import BackToTop from '../components/shared/BackToTop.vue'
 export default {
   name: 'clientLayout',
-  components: { Footer, Backtotop, Header, Sidebar },
+  components: { Footer, Header, Sidebar, BackToTop },
   data() {
     return {
     }

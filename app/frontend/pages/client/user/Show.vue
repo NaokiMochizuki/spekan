@@ -3,7 +3,8 @@
     :breadcrumb='[
     {name: "Top", uri: "/client"},
     {name: "顧客一覧", uri: "/client/users"},
-    {name: "顧客詳細", uri: ""}]'>
+    {name: "顧客詳細", uri: ""}]'
+    iconClass="ti-user">
   </Pageheader>
 
   <div class="row row-sm">
@@ -109,7 +110,7 @@
 </template>
 
 <script>
-import Pageheader from "../../../components/shared/pageheader/pageheader.vue"
+import Pageheader from "../../../components/shared/PageHeader.vue"
 export default {
   name: 'clientUserShow',
   components: { Pageheader },

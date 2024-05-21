@@ -2,7 +2,8 @@
   <Pageheader heading="顧客一覧"
     :breadcrumb='[
     {name: "Top", uri: "/client"},
-    {name: "顧客一覧", uri: "/client/users"}]'>
+    {name: "顧客一覧", uri: "/client/users"}]'
+    iconClass="ti-user">
   </Pageheader>
 
   <SearchForm @fetchUsers="fetchUsers"/>
@@ -82,7 +83,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
-import Pageheader from '../../../components/shared/pageheader/pageheader.vue'
+import Pageheader from '../../../components/shared/PageHeader.vue'
 import SearchForm from '../../../components/client/user/SearchForm.vue'
 import Pagination from '../../../components/shared/Pagination.vue'
 export default {
