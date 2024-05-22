@@ -5,7 +5,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update -qq \
     && apt-get install -y nodejs \
     && npm install -g yarn \
-    && apt-get install -y vim
+    && apt-get install -y vim \
+    && apt-get install -y net-tools
 
 WORKDIR /app
 RUN gem install bundler
@@ -18,3 +19,5 @@ COPY . .
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+
+EXPOSE 3000 3036 9876
