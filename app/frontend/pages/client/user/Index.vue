@@ -95,6 +95,7 @@ export default {
   components: { Pageheader, SearchForm, Pagination, ToastAlert, Loading },
   async mounted(){
     await this.fetchUsers()
+    this.isLoading = false
   },
   data() {
     return {
@@ -102,7 +103,7 @@ export default {
         current: 1,
         total: 1,
       },
-      isLoading: false,
+      isLoading: true,
     }
   },
   computed: {
