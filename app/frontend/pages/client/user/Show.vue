@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import Pageheader from "../../../components/shared/PageHeader.vue"
+import Pageheader from "@/components/shared/PageHeader.vue"
 export default {
   name: 'clientUserShow',
   components: { Pageheader },

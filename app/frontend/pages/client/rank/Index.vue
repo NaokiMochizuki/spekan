@@ -97,7 +97,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
-import Pageheader from '../../../components/shared/PageHeader.vue'
+import Pageheader from '@/components/shared/PageHeader.vue'
 export default {
   name: 'clientRankIndex',
   components: { Pageheader },

@@ -395,9 +395,9 @@
 </template>
 
 <script>
-import Pageheader from '../../../components/shared/PageHeader.vue'
-import Apexchart from '../../../components/shared/chart/apexcharts.vue'
-import { projectOptions, projectData } from '../../../data/dashboard/dashboardData.js';
+import Pageheader from '@/components/shared/PageHeader.vue'
+import Apexchart from '@/components/shared/chart/apexcharts.vue'
+import { projectOptions, projectData } from '@/data/dashboard/dashboardData.js';
 export default {
   name: 'accountDashbordIndex',
   components: { Pageheader, Apexchart },
