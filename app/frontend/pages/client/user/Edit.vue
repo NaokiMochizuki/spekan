@@ -15,22 +15,18 @@
       <div class='card-body' style='padding-inline: 1.563rem;'>
         <div class='row'>
           <div class="col-md-5 mb-3">
-              <label for="form-text1" class="form-label fs-14">名前</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <i class="ri-user-line"></i>
-                </div>
-                <input type="text" class="form-control" id="form-text1" placeholder="">
-              </div>
+            <TextFieldWithIcon
+              id="inputName"
+              iconClass="ri-user-line"
+              labelText="名前"
+              @onValueChanged="onNameChanged"/>
           </div>
           <div class="col-md-5 mb-3">
-              <label for="form-text1" class="form-label fs-14 text-dark">名前</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <i class="ri-user-line"></i>
-                </div>
-                <input type="text" class="form-control" id="form-text1" placeholder="">
-              </div>
+            <TextFieldWithIcon
+              id="inputEmail"
+              iconClass="ri-mail-line"
+              labelText="メールアドレス"
+              @onValueChanged="onEmailChanged"/>
           </div>
         </div>
         <div class='row'>
@@ -112,7 +108,7 @@
         <div class='card-body' style='padding-inline: 1.563rem;'>
           <div class='row'>
             <div class="col-md-5 mb-3">
-                <label for="form-text1" class="form-label fs-14">名前</label>
+                <label for="form-text1" class="form-label fs-14 text-dark">名前</label>
                 <div class="input-group">
                   <div class="input-group-text">
                     <i class="ri-user-line"></i>
@@ -156,10 +152,34 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import Pageheader from "@/components/shared/PageHeader.vue"
+import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
 export default {
   name: 'clientUserEdit',
-  components: { Pageheader },
+  components: { Pageheader, TextFieldWithIcon },
+  computed: {
+    ...mapState('user', ['formData']),
+  },
+  methods: {
+    onNameChanged(val){
+      let newObject = {
+        ...this.formData,
+          name: val
+      }
+      this.setFormData(newObject)
+      console.log(this.formData)
+    },
+    onEmailChanged(val){
+      let newObject = {
+        ...this.formData,
+          email: val
+      }
+      this.setFormData(newObject)
+      console.log(this.formData)
+    },
+    ...mapActions('user', ['setFormData'])
+  }
 }
 </script>
 
