@@ -188,9 +188,9 @@ export default {
         let url = `/api/client/users/${this.$route.params.id}`
         let res = await this.$axios.patch(url, { user: this.userFormData })
         if(res.data.result){
-          this.$refs.toastAlertRef.showSuccessToast()
+          this.$refs.toastAlertRef.showSuccessToast('Success!', '顧客の更新に成功しました')
         }else{
-          this.$refs.toastAlertRef.showErrorToast()
+          this.$refs.toastAlertRef.showErrorToast('Failed!', '顧客の更新に失敗しました')
         }
         this.isLoading = false
       }

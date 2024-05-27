@@ -11,10 +11,10 @@
       }
     },
     methods: {
-      showSuccessToast(){
+      showSuccessToast(title, msg){
         this.successToast(
-          '<strong class=\' me-auto\'>Spruha</strong>' +
-          '<div class=\'toast-body\'>Your toast message here.</div>',
+          `<strong class=\' me-auto\'>${title}</strong>` +
+          `<div class=\'toast-body\'>${msg}</div>`,
           true,
           'auto',
           true,
@@ -24,10 +24,10 @@
           'top-right'
         )
       },
-      showInfoToast(){
+      showInfoToast(title, msg){
         this.infoToast(
-          '<strong class=\' me-auto\'>Spruha</strong>' +
-          '<div class=\'toast-body\'>Your toast message here.</div>',
+          `<strong class=\' me-auto\'>${title}</strong>` +
+          `<div class=\'toast-body\'>${msg}</div>`,
           true,
           'auto',
           true,
@@ -37,10 +37,10 @@
           'top-right'
         )
       },
-      showWarningToast(){
+      showWarningToast(title, msg){
         this.warningToast(
-          '<strong class=\' me-auto\'>Spruha</strong>' +
-          '<div class=\'toast-body\'>Your toast message here.</div>',
+          `<strong class=\' me-auto\'>${title}</strong>` +
+          `<div class=\'toast-body\'>${msg}</div>`,
           true,
           'auto',
           true,
@@ -50,10 +50,10 @@
           'top-right'
         )
       },
-      showErrorToast(){
+      showErrorToast(title, msg){
         this.errorToast(
-          '<strong class=\' me-auto\'>Spruha</strong>' +
-          '<div class=\'toast-body\'>Your toast message here.</div>',
+          `<strong class=\' me-auto\'>${title}</strong>` +
+          `<div class=\'toast-body\'>${msg}</div>`,
           true,
           'auto',
           true,
