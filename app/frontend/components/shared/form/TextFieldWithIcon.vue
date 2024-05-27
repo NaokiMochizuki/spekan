@@ -15,19 +15,22 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'TextFieldWithIcon',
-  props: ['id', 'iconClass', 'labelText', 'placeholder', 'hasError', 'errorMsg'],
+  props: ['id', 'currentVal', 'iconClass', 'labelText', 'placeholder', 'hasError', 'errorMsg'],
   data(){
     return{
-      inputedValue: '',
+      inputedValue: this.currentVal,
     }
-  },
-  computed: {
   },
   methods: {
     onValueChanged(){
       this.$emit('onValueChanged', this.inputedValue)
     },
   },
+  watch: {
+    currentVal(newVal){
+      this.inputedValue = newVal
+    }
+  }
 
 }
 </script>

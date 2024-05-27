@@ -6,6 +6,8 @@
     {name: "顧客編集", uri: ""}]'
     iconClass="ti-user">
   </Pageheader>
+  <ToastAlert ref="toastAlertRef"/>
+  <Loading v-show="isLoading" />
 
   <div class="col-xl-12">
     <div class='card custom-card'>
@@ -18,6 +20,7 @@
             <div class="col-md-5 mb-3">
               <TextFieldWithIcon
                 id="inputName"
+                :currentVal="userFormData['name']"
                 iconClass="ri-user-line"
                 labelText="名前"
                 :hasError="userFormErrorMsg['name'] != null"
@@ -27,6 +30,7 @@
             <div class="col-md-5 mb-3">
               <TextFieldWithIcon
                 id="inputEmail"
+                :currentVal="userFormData['email']"
                 iconClass="ri-mail-line"
                 labelText="メールアドレス"
                 :hasError="userFormErrorMsg['email'] != null"
@@ -143,12 +147,18 @@
 import { mapState, mapActions } from 'vuex'
 import Pageheader from "@/components/shared/PageHeader.vue"
 import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
+import ToastAlert from '@/components/shared/ToastAlert.vue'
+import Loading from '@/components/shared/Loading.vue'
 export default {
   name: 'clientUserEdit',
-  components: { Pageheader, TextFieldWithIcon },
+  components: { Pageheader, TextFieldWithIcon, ToastAlert, Loading },
+  async mounted(){
+    await this.fetchUser()
+    this.isLoading = false
+  },
   data(){
     return{
-      userFormSubmitted: false, //trueなら入力毎にバリデーション
+      isLoading: true,
       isUserFormActive: true,
     }
   },
@@ -156,9 +166,14 @@ export default {
     ...mapState('user', ['userFormData', 'userFormErrorMsg']),
   },
   methods: {
+    async fetchUser(){
+      let url = `/api/client/users/${this.$route.params.id}`
+      let res = await this.$axios.get(url)
+      this.setUserFormData(res.data['user'])
+    },
     async checkUserValidation(){
       let url = `/api/client/users/${this.$route.params.id}/is_valid`
-      let res = await this.$axios.post(url, this.userFormData)
+      let res = await this.$axios.post(url, { user: this.userFormData })
       this.setUserFormErrorMsg(res.data.error_msg)
       this.checkUserFormActivation()
     },
@@ -166,10 +181,19 @@ export default {
       let hasError = Object.values(this.userFormErrorMsg).some(value => value !== null)
       this.isUserFormActive = !hasError
     },
-    saveUserData(){
-      this.userFormSubmitted = true
-      this.checkUserValidation()
-      //TODO: 保存処理
+    async saveUserData(){
+      this.isLoading = true
+      await this.checkUserValidation()
+      if(this.isUserFormActive){
+        let url = `/api/client/users/${this.$route.params.id}`
+        let res = await this.$axios.patch(url, { user: this.userFormData })
+        if(res.data.result){
+          this.$refs.toastAlertRef.showSuccessToast()
+        }else{
+          this.$refs.toastAlertRef.showErrorToast()
+        }
+        this.isLoading = false
+      }
     },
     saveRankData(){
     },
@@ -187,9 +211,7 @@ export default {
   },
   watch: {
     userFormData(newVal){
-      if(this.userFormSubmitted){
-        this.checkUserValidation()
-      }
+      this.checkUserValidation()
     }
   }
 }

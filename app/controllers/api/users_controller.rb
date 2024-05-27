@@ -1,8 +1,19 @@
 class Api::UsersController < ApiController
-  before_action :set_user, only: [:is_valid]
+  before_action :set_user, only: [:is_valid, :show, :update, :destroy]
 
   def index
     @users = current_client.users.search_by_params(params).page(params[:page])
+  end
+
+  def show
+  end
+
+  def update
+    @user.assign_attributes(user_params)
+    @result = @user.save
+  end
+
+  def destroy
   end
 
   def is_valid
@@ -12,7 +23,7 @@ class Api::UsersController < ApiController
 
   private
   def user_params
-    params.permit(:name, :email)
+    params.require(:user).permit(:name, :email)
   end
 
   def set_user
