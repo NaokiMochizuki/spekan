@@ -13,41 +13,29 @@
         <div class="card-title">基本情報</div>
       </div>
       <div class='card-body' style='padding-inline: 1.563rem;'>
-        <div class='row'>
-          <div class="col-md-5 mb-3">
-            <TextFieldWithIcon
-              id="inputName"
-              iconClass="ri-user-line"
-              labelText="名前"
-              @onValueChanged="onNameChanged"/>
+        <form @submit.prevent="saveUserData">
+          <div class='row'>
+            <div class="col-md-5 mb-3">
+              <TextFieldWithIcon
+                id="inputName"
+                iconClass="ri-user-line"
+                labelText="名前"
+                :hasError="userFormErrorMsg['name'] != null"
+                :errorMsg="userFormErrorMsg['name']"
+                @onValueChanged="onNameChanged"/>
+            </div>
+            <div class="col-md-5 mb-3">
+              <TextFieldWithIcon
+                id="inputEmail"
+                iconClass="ri-mail-line"
+                labelText="メールアドレス"
+                :hasError="userFormErrorMsg['email'] != null"
+                :errorMsg="userFormErrorMsg['email']"
+                @onValueChanged="onEmailChanged"/>
+            </div>
           </div>
-          <div class="col-md-5 mb-3">
-            <TextFieldWithIcon
-              id="inputEmail"
-              iconClass="ri-mail-line"
-              labelText="メールアドレス"
-              @onValueChanged="onEmailChanged"/>
-          </div>
-        </div>
-        <div class='row'>
-          <div class="col-md-6 mb-3">
-              <label for="form-password1" class="form-label fs-14 text-dark">Enter
-                Password</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <i class="ri-lock-line"></i>
-                </div>
-                <input type="password" class="form-control" id="form-password1" placeholder="">
-              </div>
-          </div>
-        </div>
-        <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
-          <label class="form-check-label" for="invalidCheck1">
-            Accept Policy
-          </label>
-        </div>
-        <button class="btn btn-primary float-end" type="submit">Submit</button>
+          <button class="btn btn-primary float-end" type="submit" :disabled="!isUserFormActive">保存</button>
+        </form>
       </div>
     </div>
   </div>
@@ -144,7 +132,7 @@
               Accept Policy
             </label>
           </div>
-          <button class="btn btn-primary float-end" type="submit">Submit</button>
+          <button class="btn btn-primary float-end" type="submit" >Submit</button>
         </div>
       </div>
     </div>
@@ -158,27 +146,51 @@ import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
 export default {
   name: 'clientUserEdit',
   components: { Pageheader, TextFieldWithIcon },
+  data(){
+    return{
+      userFormSubmitted: false, //trueなら入力毎にバリデーション
+      isUserFormActive: true,
+    }
+  },
   computed: {
-    ...mapState('user', ['formData']),
+    ...mapState('user', ['userFormData', 'userFormErrorMsg']),
   },
   methods: {
+    async checkUserValidation(){
+      let url = `/api/client/users/${this.$route.params.id}/is_valid`
+      let res = await this.$axios.post(url, this.userFormData)
+      this.setUserFormErrorMsg(res.data.error_msg)
+      this.checkUserFormActivation()
+    },
+    checkUserFormActivation(){
+      let hasError = Object.values(this.userFormErrorMsg).some(value => value !== null)
+      this.isUserFormActive = !hasError
+    },
+    saveUserData(){
+      this.userFormSubmitted = true
+      this.checkUserValidation()
+      //TODO: 保存処理
+    },
+    saveRankData(){
+    },
+    savePointData(){
+    },
     onNameChanged(val){
-      let newObject = {
-        ...this.formData,
-          name: val
-      }
-      this.setFormData(newObject)
-      console.log(this.formData)
+      let newObject = { ...this.userFormData, name: val }
+      this.setUserFormData(newObject)
     },
     onEmailChanged(val){
-      let newObject = {
-        ...this.formData,
-          email: val
-      }
-      this.setFormData(newObject)
-      console.log(this.formData)
+      let newObject = { ...this.userFormData, email: val }
+      this.setUserFormData(newObject)
     },
-    ...mapActions('user', ['setFormData'])
+    ...mapActions('user', ['setUserFormData', 'setUserFormErrorMsg'])
+  },
+  watch: {
+    userFormData(newVal){
+      if(this.userFormSubmitted){
+        this.checkUserValidation()
+      }
+    }
   }
 }
 </script>

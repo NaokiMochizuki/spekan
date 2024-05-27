@@ -15,11 +15,18 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import '@fortawesome/fontawesome-free';
 library.add(fas, far, fab);
 import 'simplebar-vue/dist/simplebar.min.css';
+import axios from 'axios'
+
 
 // Vueの適応
 const app = createApp(App)
 app.component("simplebar", simplebar)
 app.use(store)
 app.use(router)
+
+let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+axios.defaults.headers.common['X-CSRF-Token'] = token
+app.config.globalProperties.$axios = axios
+
 app.mount('#app')
 

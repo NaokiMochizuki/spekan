@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     scope :client do
-      resources :users, only: [:index]
+      resources :users, only: [:index] do
+        member do
+          post 'is_valid'
+        end
+      end
       resources :ranks, only: [:index]
     end
   end

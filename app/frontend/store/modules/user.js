@@ -3,35 +3,48 @@ const user = {
 
   state: {
     users: [],
-    formData: {
+    userFormData: {
       name: null,
       email: null,
-    }
+    },
+    userFormErrorMsg: {
+      name: null,
+      email: null,
+    },
+
   },
   getters: {
     users(state){
       state.users
     },
-    formData(state){
-      state.formData
-    }
-
+    userFormData(state){
+      state.userFormData
+    },
+    userFormErrorMsg(state){
+      state.userFormErrorMsg
+    },
   },
   actions: {
     setUsers(context, payload){
       context.commit('setUsers', payload)
     },
-    setFormData(context, payload){
-      context.commit('setFormData', payload)
-    }
+    setUserFormData(context, payload){
+      context.commit('setUserFormData', payload)
+    },
+    setUserFormErrorMsg(context, payload){
+      context.commit('setUserFormErrorMsg', payload)
+    },
   },
   mutations: {
     setUsers(state, payload){
       state.users = payload
     },
-    setFormData(state, payload){
-      state.formData = payload
-    }
+    setUserFormData(state, payload){
+      state.userFormData = payload
+    },
+    setUserFormErrorMsg(state, payload){
+      state.userFormErrorMsg = payload
+    },
   }
 }
 
