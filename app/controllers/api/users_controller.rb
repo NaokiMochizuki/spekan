@@ -14,6 +14,7 @@ class Api::UsersController < ApiController
   end
 
   def destroy
+    @result = @user.destroy!
   end
 
   def is_valid

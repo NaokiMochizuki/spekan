@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     scope :client do
-      resources :users, only: [:index, :show, :update] do
+      resources :users, only: [:index, :show, :update, :destroy] do
         member do
           post 'is_valid'
         end

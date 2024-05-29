@@ -6,6 +6,7 @@
     {name: "顧客詳細", uri: ""}]'
     iconClass="ti-user">
   </Pageheader>
+  <Loading v-show="isLoading" />
 
   <div class="row row-sm">
     <div class="col-xl-3 col-lg-12 col-md-12">
@@ -111,11 +112,16 @@
 
 <script>
 import Pageheader from "@/components/shared/PageHeader.vue"
+import Loading from "@/components/shared/Loading.vue"
 export default {
   name: 'clientUserShow',
-  components: { Pageheader },
+  components: { Pageheader, Loading },
+  mounted(){
+    this.isLoading = false
+  },
   data() {
     return {
+      isLoading: true
     }
   },
 

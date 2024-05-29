@@ -1,12 +1,12 @@
 <template>
   <Loading v-show="isLoading" />
-  <ToastAlert ref="toastAlertRef"/>
   <Pageheader heading="顧客一覧"
     :breadcrumb='[
     {name: "Top", uri: "/client"},
     {name: "顧客一覧", uri: "/client/users"}]'
     iconClass="ti-user">
   </Pageheader>
+  <ToastAlert ref="toastAlertRef"/>
 
   <SearchForm @fetchUsers="fetchUsers"/>
 
@@ -66,7 +66,7 @@
                       </a>
                       <a href="javascript:void(0);"
                         class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"
-                        @click="onDelete(user)">
+                        @click="deleteUser(user)">
                         <i class="ri-delete-bin-line"></i>
                       </a>
                     </div>
@@ -132,9 +132,18 @@ export default {
     moveToEditPage(userId){
       this.$router.push({ path: `/client/users/${userId}/edit` })
     },
-    onDelete(user){
+    async deleteUser(user){
       if(confirm(`ID: ${user.id}: ${user.name}を削除します(今後の予約は全て自動で削除され、未精算金額がある場合は即時引き落としがかかります。) よろしいですか？`)){
-        //TODO: ここで削除処理
+        this.isLoading = true
+        let url = `/api/client/users/${user.id}`
+        let res = await this.$axios.delete(url)
+        if(res.data.result){
+          this.$refs.toastAlertRef.showSuccessToast('Success!', `ID: ${user.id}: ${user.name}の削除に成功しました`)
+          await this.fetchUsers()
+        }else{
+          this.$refs.toastAlertRef.showErrorToast('Success!', `ID: ${user.id}: ${user.name}の削除に失敗しました`)
+        }
+        this.isLoading = false
       }
     },
     // Paginationからの参照メソッド
