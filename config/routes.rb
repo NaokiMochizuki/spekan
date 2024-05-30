@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update, :destroy] do
         member do
           post 'is_valid'
+          get 'selectable_default_payways'
         end
       end
       resources :ranks, only: [:index]

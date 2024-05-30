@@ -22,9 +22,12 @@ class Api::UsersController < ApiController
     @user.valid?
   end
 
+  def selectable_default_payways
+  end
+
   private
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :default_payway)
   end
 
   def set_user

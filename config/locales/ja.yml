@@ -6,4 +6,9 @@ ja:
       user:
         name: 名前
         email: メールアドレス
+  enums:
+    user:
+      default_payway:
+        creditcard: クレジットカード
+        invoice: 請求書
 

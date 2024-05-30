@@ -6,10 +6,12 @@ const user = {
     userFormData: {
       name: null,
       email: null,
+      default_payway: null,
     },
     userFormErrorMsg: {
       name: null,
       email: null,
+      default_payway: null,
     },
 
   },

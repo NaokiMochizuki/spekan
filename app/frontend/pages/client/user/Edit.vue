@@ -16,8 +16,8 @@
       </div>
       <div class='card-body' style='padding-inline: 1.563rem;'>
         <form @submit.prevent="saveUserData">
-          <div class='row'>
-            <div class="col-md-5 mb-3">
+          <div class='row mb-3'>
+            <div class="col-md-4">
               <TextFieldWithIcon
                 id="inputName"
                 :currentVal="userFormData['name']"
@@ -27,7 +27,7 @@
                 :errorMsg="userFormErrorMsg['name']"
                 @onValueChanged="onNameChanged"/>
             </div>
-            <div class="col-md-5 mb-3">
+            <div class="col-md-4">
               <TextFieldWithIcon
                 id="inputEmail"
                 :currentVal="userFormData['email']"
@@ -36,6 +36,14 @@
                 :hasError="userFormErrorMsg['email'] != null"
                 :errorMsg="userFormErrorMsg['email']"
                 @onValueChanged="onEmailChanged"/>
+            </div>
+            <div class="col-md-4">
+              <SelectWithSearch
+                id="selectDefaultPayway"
+                :currentVal="userFormData['default_payway']"
+                labelText="支払い方法"
+                :selectableOptions="selectableDefaultPayways"
+                @onValueChanged="onDefaultPaywayChanged"/>
             </div>
           </div>
           <button class="btn btn-primary float-end" type="submit" :disabled="!isUserFormActive">保存</button>
@@ -147,12 +155,14 @@
 import { mapState, mapActions } from 'vuex'
 import Pageheader from "@/components/shared/PageHeader.vue"
 import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
+import SelectWithSearch from "@/components/shared/form/SelectWithSearch.vue"
 import ToastAlert from '@/components/shared/ToastAlert.vue'
 import Loading from '@/components/shared/Loading.vue'
 export default {
   name: 'clientUserEdit',
-  components: { Pageheader, TextFieldWithIcon, ToastAlert, Loading },
+  components: { Pageheader, TextFieldWithIcon, SelectWithSearch, ToastAlert, Loading },
   async mounted(){
+    await this.fetchSelectableDefaultPayways()
     await this.fetchUser()
     this.isLoading = false
   },
@@ -160,6 +170,7 @@ export default {
     return{
       isLoading: true,
       isUserFormActive: true,
+      selectableDefaultPayways: [],
     }
   },
   computed: {
@@ -170,6 +181,11 @@ export default {
       let url = `/api/client/users/${this.$route.params.id}`
       let res = await this.$axios.get(url)
       this.setUserFormData(res.data['user'])
+    },
+    async fetchSelectableDefaultPayways(){
+      let url = `/api/client/users/${this.$route.params.id}/selectable_default_payways`
+      let res = await this.$axios.get(url)
+      this.selectableDefaultPayways = res.data
     },
     async checkUserValidation(){
       let url = `/api/client/users/${this.$route.params.id}/is_valid`
@@ -205,6 +221,11 @@ export default {
     },
     onEmailChanged(val){
       let newObject = { ...this.userFormData, email: val }
+      this.setUserFormData(newObject)
+    },
+    onDefaultPaywayChanged(val){
+      let newObject = { ...this.userFormData, default_payway: val['value'] }
+      console.log(newObject)
       this.setUserFormData(newObject)
     },
     ...mapActions('user', ['setUserFormData', 'setUserFormErrorMsg'])

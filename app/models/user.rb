@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   enum default_payway: {
     creditcard: 1,
+    invoice: 2
   }
 
   scope :search_by_params, ->(params) {
