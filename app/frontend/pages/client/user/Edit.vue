@@ -38,6 +38,7 @@
                 @onValueChanged="onEmailChanged"/>
             </div>
             <div class="col-md-4">
+              <!-- TODO: 初回読み込みは値が反映するが、キャッシュが効いた状態だと反映しないバグあり -->
               <SelectWithSearch
                 id="selectDefaultPayway"
                 :currentVal="userFormData['default_payway']"
