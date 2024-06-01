@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Layout from '../layouts/index.vue'
+import Layout from '@/layouts/index.vue'
 import { isAuthenticated } from './auth'
-import Authentication from '../layouts/authentication.vue'
-import clientDashbordIndex from '../pages/client/dashboard/Index.vue'
-import clientUserIndex from '../pages/client/user/Index.vue'
-import clientUserShow from '../pages/client/user/Show.vue'
-import clientUserEdit from '../pages/client/user/Edit.vue'
-import clientRankIndex from '../pages/client/rank/Index.vue'
-import clientRankShow from '../pages/client/rank/Show.vue'
-import clientSessionNew from '../pages/client/session/New.vue'
-import clientSessionForgetPassword from '../pages/client/session/ForgetPassword.vue'
+import Authentication from '@/layouts/authentication.vue'
+import clientDashbordIndex from '@/pages/client/dashboard/Index.vue'
+import clientUserIndex from '@/pages/client/user/Index.vue'
+import clientUserShow from '@/pages/client/user/Show.vue'
+import clientUserEdit from '@/pages/client/user/Edit.vue'
+import clientRankIndex from '@/pages/client/rank/Index.vue'
+import clientRankShow from '@/pages/client/rank/Show.vue'
+import clientRankEdit from '@/pages/client/rank/Edit.vue'
+import clientSessionNew from '@/pages/client/session/New.vue'
+import clientSessionForgetPassword from '@/pages/client/session/ForgetPassword.vue'
 
 const routes = [
   {
@@ -50,6 +51,12 @@ const routes = [
         path: 'ranks/:id',
         name: 'ClientRankShow',
         component: clientRankShow,
+        meta: { requireAuth: true },
+      },
+      {
+        path: 'ranks/:id/edit',
+        name: 'ClientRankEdit',
+        component: clientRankEdit,
         meta: { requireAuth: true },
       },
     ]

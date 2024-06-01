@@ -6,6 +6,11 @@ ja:
       user:
         name: 名前
         email: メールアドレス
+      rank:
+        name: 名称
+        point_rate: ポイント還元率
+        color: 会員証カラー
+        is_default: 初期ランク
   enums:
     user:
       default_payway:

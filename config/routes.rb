@@ -17,7 +17,11 @@ Rails.application.routes.draw do
           get 'me'
         end
       end
-      resources :ranks, only: [:index, :show, :destroy]
+      resources :ranks, only: [:index, :show, :update, :destroy] do
+        member do
+          post 'is_valid'
+        end
+      end
     end
   end
 
@@ -25,6 +29,6 @@ Rails.application.routes.draw do
     get '/sign_in' => 'sessions#new'
     root 'dashboards#index'
     resources :users, only: [:index, :show, :edit]
-    resources :ranks, only: [:index, :show]
+    resources :ranks, only: [:index, :show, :edit]
   end
 end

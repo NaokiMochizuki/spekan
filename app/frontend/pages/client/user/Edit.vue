@@ -1,5 +1,5 @@
 <template>
-  <Pageheader heading="顧客詳細"
+  <Pageheader heading="顧客編集"
     :breadcrumb='[
     {name: "Top", uri: "/client"},
     {name: "顧客一覧", uri: "/client/users"},

@@ -1,11 +1,16 @@
 class Api::RanksController < ApiController
-  before_action :set_rank, only: [:show, :destroy]
+  before_action :set_rank, only: [:show, :update, :destroy, :is_valid]
 
   def index
     @ranks = current_client.ranks.page(params[:page])
   end
 
   def show
+  end
+
+  def update
+    @rank.assign_attributes(rank_params)
+    @result = @rank.save
   end
 
   def destroy
@@ -18,8 +23,20 @@ class Api::RanksController < ApiController
     end
   end
 
+  def is_valid
+    @rank.assign_attributes(rank_params)
+    @rank.valid?
+  end
+
   private
   def set_rank
     @rank = current_client.ranks.find(params[:id])
+  end
+
+  def rank_params
+    params.require(:rank).permit(:name,
+                                 :point_rate,
+                                 :color,
+                                 :is_default)
   end
 end

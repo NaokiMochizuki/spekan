@@ -37,7 +37,9 @@ class Api::UsersController < ApiController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :default_payway)
+    params.require(:user).permit(:name,
+                                 :email,
+                                 :default_payway)
   end
 
   def set_user
