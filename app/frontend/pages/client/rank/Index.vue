@@ -1,4 +1,5 @@
 <template>
+  <Loading v-show="isLoading" />
   <Pageheader
     heading="ランク一覧"
     :breadcrumb='[
@@ -64,30 +65,7 @@
               </tbody>
             </table>
           </div>
-          <div class="float-end mt-3">
-            <nav aria-label="Page navigation" class="pagination-style-3">
-              <ul class="pagination mb-0 flex-wrap">
-                <li class="page-item disabled">
-                  <a class="page-link" href="javascript:void(0);">
-                    Prev
-                  </a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0);">
-                    <i class="bi bi-three-dots"></i>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">16</a></li>
-                <li class="page-item">
-                  <a class="page-link text-primary" href="javascript:void(0);">
-                    next
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          <Pagination :page="page" @onPageChange="onPageChange" />
         </div>
       </div>
     </div>
@@ -98,24 +76,38 @@
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
 import Pageheader from '@/components/shared/PageHeader.vue'
+import Pagination from '@/components/shared/Pagination.vue'
+import Loading from '@/components/shared/Loading.vue'
 export default {
   name: 'clientRankIndex',
-  components: { Pageheader },
+  components: { Pageheader, Loading, Pagination },
   async mounted(){
     await this.fetchRanks()
+    this.isLoading = false
   },
   data() {
     return {
+      page: {
+        current: 1,
+        total: 1,
+      },
+      isLoading: true,
     }
   },
   computed: {
     ...mapState('rank', ['ranks']),
   },
   methods: {
-    async fetchRanks() {
+    async fetchRanks(search={}) {
       try {
-        const res = await axios.get('/api/client/ranks')
-        this.setRanks(res.data)
+        const res = await axios.get('/api/client/ranks', {
+          params: {
+            page: this.page.current,
+          }
+        })
+        this.page.current = res.data.pagination.current_page
+        this.page.total = res.data.pagination.total_pages
+        await this.setRanks(res.data.ranks)
       } catch {
         alert('ERROR')
       }
@@ -130,6 +122,10 @@ export default {
       if(confirm(`ID: ${rank.id}: ${rank.name}を削除します(ランク適応済みの顧客がいる場合、削除後初期ランクが適応されます) よろしいですか？`)){
         //TODO: ここで削除処理
       }
+    },
+    onPageChange(newPage){
+      this.page.current = newPage
+      this.fetchRanks()
     },
     ...mapActions('rank', ['setRanks'])
   }
