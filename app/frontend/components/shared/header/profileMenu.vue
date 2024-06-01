@@ -1,4 +1,5 @@
 <template>
+  <Loading v-show="isLoading" />
   <!-- プロフィールメニュー -->
   <div class="header-element">
     <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile"
@@ -48,19 +49,36 @@
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex" :to="`${url}custompages/signin`">
-          <i class="fa-solid fa-power-off fs-16 align-middle me-2"></i>Log Out
-        </router-link>
+        <a href='#' class='dropdown-item d-flex' @click.prevent='onLogout'>
+          <i class="fa-solid fa-power-off fs-16 align-middle me-2"></i>ログアウト
+        </a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import Loading from '@/components/shared/Loading.vue'
 export default {
+  name: 'profileMenu',
+  components: { Loading },
   data(){
     return {
+      isLoading: false
     }
+  },
+  methods: {
+    async onLogout(){
+      this.isLoading = true
+      await this.logout()
+      setTimeout(() => {
+        this.isLoading = false
+        localStorage.setItem("loggedOut", "true")
+        this.$router.push('/client/sign_in')
+      }, 1000);
+    },
+    ...mapActions('clientUser', ['logout']),
   }
 
 }

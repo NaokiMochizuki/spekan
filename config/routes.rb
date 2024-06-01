@@ -6,10 +6,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     scope :client do
+      post '/sign_in' => 'sessions#create'
+      get '/sign_out' => 'sessions#destroy'
       resources :users, only: [:index, :show, :update, :destroy] do
         member do
           post 'is_valid'
           get 'selectable_default_payways'
+        end
+        collection do
+          get 'me'
         end
       end
       resources :ranks, only: [:index]
@@ -18,8 +23,6 @@ Rails.application.routes.draw do
 
   namespace :client do
     get '/sign_in' => 'sessions#new'
-    post '/sign_in' => 'sessions#create'
-    get '/sign_out' => 'sessions#destroy'
     root 'dashboards#index'
     resources :users, only: [:index, :show, :edit]
     resources :ranks, only: [:index]

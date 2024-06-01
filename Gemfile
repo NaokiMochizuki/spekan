@@ -24,6 +24,7 @@ gem 'foreman'
 gem 'devise'
 gem 'ransack'
 gem 'kaminari'
+gem 'jwt'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

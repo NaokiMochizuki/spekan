@@ -25,6 +25,10 @@ class Api::UsersController < ApiController
   def selectable_default_payways
   end
 
+  def me
+    @client_user = current_client_user
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :default_payway)

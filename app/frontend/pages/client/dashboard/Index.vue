@@ -1,4 +1,5 @@
 <template>
+  <ToastAlert ref="toastAlertRef"/>
   <Pageheader heading="ダッシュボード"</Pageheader>
   <div class="row row-sm">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
@@ -396,14 +397,21 @@
 
 <script>
 import Pageheader from '@/components/shared/PageHeader.vue'
+import ToastAlert from '@/components/shared/ToastAlert.vue'
 import Apexchart from '@/components/shared/chart/apexcharts.vue'
 import { projectOptions, projectData } from '@/data/dashboard/dashboardData.js';
 export default {
-  name: 'accountDashbordIndex',
-  components: { Pageheader, Apexchart },
+  name: 'clientDashbordIndex',
+  components: { Pageheader, Apexchart, ToastAlert },
   data() {
     return {
       projectOptions, projectData
+    }
+  },
+  mounted(){
+    if (localStorage.getItem("loggedIn") === "true") {
+      this.$refs.toastAlertRef.showSuccessToast('Success!', 'ログインしました')
+      localStorage.removeItem("loggedIn")
     }
   },
   computed: {

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from '../layouts/index.vue'
+import { isAuthenticated } from './auth'
 import Authentication from '../layouts/authentication.vue'
 import clientDashbordIndex from '../pages/client/dashboard/Index.vue'
 import clientUserIndex from '../pages/client/user/Index.vue'
@@ -18,26 +19,31 @@ const routes = [
         path: '',
         name: 'ClientDashboard',
         component: clientDashbordIndex,
+        meta: { requireAuth: true },
       },
       {
         path: 'users',
         name: 'ClientUserIndex',
         component: clientUserIndex,
+        meta: { requireAuth: true },
       },
       {
         path: 'users/:id',
         name: 'ClientUserShow',
         component: clientUserShow,
+        meta: { requireAuth: true },
       },
       {
         path: 'users/:id/edit',
         name: 'ClientUserEdit',
         component: clientUserEdit,
+        meta: { requireAuth: true },
       },
       {
         path: 'ranks',
         name: 'ClientRankIndex',
         component: clientRankIndex,
+        meta: { requireAuth: true },
       },
     ]
   },
@@ -70,5 +76,21 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+// ナビゲーションガード
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    if (!isAuthenticated()) {
+      localStorage.setItem("loggedInRequired", "true")
+      next({
+        path: '/client/sign_in',
+      });
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+});
 
 export default router
