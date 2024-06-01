@@ -17,7 +17,7 @@ Rails.application.routes.draw do
           get 'me'
         end
       end
-      resources :ranks, only: [:index]
+      resources :ranks, only: [:index, :destroy]
     end
   end
 

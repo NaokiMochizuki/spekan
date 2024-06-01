@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_one :rank, through: :user_rank
 
   after_create :set_default_rank
+  before_destroy :settle_unpaid_amount!
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -33,5 +34,9 @@ class User < ApplicationRecord
 
   def set_default_rank
     #TODO: 初期ランクを顧客に紐付け
+  end
+
+  def settle_unpaid_amount!
+    #TODO: 未精算金額の精算を行い、精算不可の場合は例外を出す
   end
 end

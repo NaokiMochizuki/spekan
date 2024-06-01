@@ -141,7 +141,7 @@ export default {
           this.$refs.toastAlertRef.showSuccessToast('Success!', `ID: ${user.id}: ${user.name}の削除に成功しました`)
           await this.fetchUsers()
         }else{
-          this.$refs.toastAlertRef.showErrorToast('Success!', `ID: ${user.id}: ${user.name}の削除に失敗しました`)
+          this.$refs.toastAlertRef.showErrorToast('Error!', `ID: ${user.id}: ${user.name}の削除に失敗しました。${res.data.error_msg}`)
         }
         this.isLoading = false
       }

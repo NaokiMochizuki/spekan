@@ -14,7 +14,13 @@ class Api::UsersController < ApiController
   end
 
   def destroy
-    @result = @user.destroy!
+    @error_msg = nil
+    begin
+      @result = @user.destroy!
+    rescue => e
+      @result = false
+      @error_msg = e.message
+    end
   end
 
   def is_valid

@@ -7,6 +7,7 @@
     {name: "ランク一覧", uri: "/client/ranks"}]'
     iconClass="ti-crown">
   </Pageheader>
+  <ToastAlert ref="toastAlertRef"/>
 
   <div class="row row-sm">
     <div class="col-xl-12">
@@ -77,10 +78,11 @@ import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
 import Pageheader from '@/components/shared/PageHeader.vue'
 import Pagination from '@/components/shared/Pagination.vue'
+import ToastAlert from '@/components/shared/ToastAlert.vue'
 import Loading from '@/components/shared/Loading.vue'
 export default {
   name: 'clientRankIndex',
-  components: { Pageheader, Loading, Pagination },
+  components: { Pageheader, Loading, Pagination, ToastAlert },
   async mounted(){
     await this.fetchRanks()
     this.isLoading = false
@@ -118,11 +120,21 @@ export default {
     moveToEditPage(rankId){
       this.$router.push({ path: `/client/ranks/${rankId}/edit` })
     },
-    onDelete(rank){
+    async onDelete(rank){
       if(confirm(`ID: ${rank.id}: ${rank.name}を削除します(ランク適応済みの顧客がいる場合、削除後初期ランクが適応されます) よろしいですか？`)){
-        //TODO: ここで削除処理
+        this.isLoading = true
+        let url = `/api/client/ranks/${rank.id}`
+        let res = await this.$axios.delete(url)
+        if(res.data.result){
+          this.$refs.toastAlertRef.showSuccessToast('Success!', `ID: ${rank.id}: ${rank.name}の削除に成功しました`)
+          await this.fetchRanks()
+        }else{
+          this.$refs.toastAlertRef.showErrorToast('Error!', `ID: ${rank.id}: ${rank.name}の削除に失敗しました。${res.data.error_msg}`)
+        }
+        this.isLoading = false
       }
     },
+    // Paginationからの参照メソッド
     onPageChange(newPage){
       this.page.current = newPage
       this.fetchRanks()
