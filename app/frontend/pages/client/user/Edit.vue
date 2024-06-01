@@ -226,7 +226,6 @@ export default {
     },
     onDefaultPaywayChanged(val){
       let newObject = { ...this.userFormData, default_payway: val['value'] }
-      console.log(newObject)
       this.setUserFormData(newObject)
     },
     ...mapActions('user', ['setUserFormData', 'setUserFormErrorMsg'])

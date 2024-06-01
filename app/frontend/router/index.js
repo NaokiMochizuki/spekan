@@ -7,6 +7,7 @@ import clientUserIndex from '../pages/client/user/Index.vue'
 import clientUserShow from '../pages/client/user/Show.vue'
 import clientUserEdit from '../pages/client/user/Edit.vue'
 import clientRankIndex from '../pages/client/rank/Index.vue'
+import clientRankShow from '../pages/client/rank/Show.vue'
 import clientSessionNew from '../pages/client/session/New.vue'
 import clientSessionForgetPassword from '../pages/client/session/ForgetPassword.vue'
 
@@ -43,6 +44,12 @@ const routes = [
         path: 'ranks',
         name: 'ClientRankIndex',
         component: clientRankIndex,
+        meta: { requireAuth: true },
+      },
+      {
+        path: 'ranks/:id',
+        name: 'ClientRankShow',
+        component: clientRankShow,
         meta: { requireAuth: true },
       },
     ]
