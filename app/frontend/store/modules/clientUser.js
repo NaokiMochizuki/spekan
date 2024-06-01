@@ -28,7 +28,6 @@ const clientUser = {
       let loginRes = await axios.post(loginUrl, payload)
       context.commit('setAuthToken', loginRes.data.token)
       localStorage.authToken = loginRes.data.token
-      //TODO: $axiosのheaderにtokenを入れ込む処理
       let meUrl = `/api/client/users/me`
       let meRes = await axios.get(meUrl)
       context.commit('setAuthedClientUser', meRes.data)
@@ -37,9 +36,9 @@ const clientUser = {
       localStorage.removeItem("authToken")
       context.commit('setAuthedClientUser', null)
       context.commit('setAuthToken', null)
-      //TODO: $axiosのheaderからtokenを削除する処理
       context.commit('setAuthedClientUser', null)
     },
+
     async fetchAuthedClientUser(context){
       if (!localStorage.authToken) return null
       if (state.authUser) return state.authUser

@@ -94,7 +94,7 @@ export default {
         localStorage.setItem("loggedIn", "true")
         this.isLoading = false
         this.$router.push('/client')
-      }catch{
+      }catch(error){
         this.isLoading = false
         this.$refs.toastAlertRef.showErrorToast('Error!', 'ログインに失敗しました')
       }
