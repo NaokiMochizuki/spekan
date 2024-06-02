@@ -3,6 +3,7 @@ class Rank < ApplicationRecord
   belongs_to :client
   has_many :user_ranks, dependent: :destroy
   has_many :users, through: :user_ranks
+  has_one :rank_automation, foreign_key: 'before_rank_id'
 
   before_destroy :reassign_users_to_default_rank, :default_rank_is_not_deleteable!
 

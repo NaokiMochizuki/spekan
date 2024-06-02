@@ -11,9 +11,17 @@ ja:
         point_rate: ポイント還元率
         color: 会員証カラー
         is_default: 初期ランク
+      rank_automation:
+        after_rank_id: 自動昇格後のランク
+        automation_type: 昇格条件
+        last_checked_at: 最終昇格確認日
   enums:
     user:
       default_payway:
         creditcard: クレジットカード
         invoice: 請求書
+    rank_automation:
+      automation_type:
+        total_amount: 合計利用金額
+        checkin_count: 来店回数
 

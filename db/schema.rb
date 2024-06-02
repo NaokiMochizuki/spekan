@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_15_141325) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_02_010113) do
   create_table "client_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "client_id"
     t.string "name"
@@ -30,6 +30,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_15_141325) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rank_automations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "before_rank_id"
+    t.integer "after_rank_id"
+    t.integer "automation_type"
+    t.integer "value"
+    t.integer "term"
+    t.datetime "last_checked_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["after_rank_id"], name: "index_rank_automations_on_after_rank_id"
+    t.index ["automation_type"], name: "index_rank_automations_on_automation_type"
+    t.index ["before_rank_id"], name: "index_rank_automations_on_before_rank_id"
   end
 
   create_table "ranks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

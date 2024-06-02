@@ -42,7 +42,7 @@
                   <td>{{rank.point_rate}}%</td>
                   <td>{{rank.is_default ? 'YES' : ''}}</td>
                   <td>{{rank.users_count}}名</td>
-                  <td>まだ未設定</td>
+                  <td>{{rank.auto_promotion_setting}}</td>
                   <td>
                     <div class="hstack gap-2 fs-15">
                       <a href="javascript:void(0);"

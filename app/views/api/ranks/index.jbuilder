@@ -10,5 +10,6 @@ json.ranks do
     json.color rank.color
     json.is_default rank.is_default
     json.users_count rank.users.count
+    json.auto_promotion_setting rank.decorate.auto_promotion_setting
   end
 end
