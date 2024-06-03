@@ -38,12 +38,12 @@
                 @onValueChanged="onEmailChanged"/>
             </div>
             <div class="col-md-4">
-              <!-- TODO: 初回読み込みは値が反映するが、キャッシュが効いた状態だと反映しないバグあり -->
+              <!-- TODO: currentValを{name: --, value: --}の形に形成して渡す -->
               <SelectWithSearch
                 id="selectDefaultPayway"
-                :currentVal="userFormData['default_payway']"
+                :currentVal="selectedDefaultPayway"
                 labelText="支払い方法"
-                :selectableOptions="selectableDefaultPayways"
+                :options="selectableDefaultPayways"
                 @onValueChanged="onDefaultPaywayChanged"/>
             </div>
           </div>
@@ -61,43 +61,11 @@
         <div class='card-body' style='padding-inline: 1.563rem;'>
           <div class='row'>
             <div class="col-md-5 mb-3">
-                <label for="form-text1" class="form-label fs-14">名前</label>
-                <div class="input-group">
-                  <div class="input-group-text">
-                    <i class="ri-user-line"></i>
-                  </div>
-                  <input type="text" class="form-control" id="form-text1" placeholder="">
-                </div>
             </div>
             <div class="col-md-5 mb-3">
-                <label for="form-text1" class="form-label fs-14 text-dark">名前</label>
-                <div class="input-group">
-                  <div class="input-group-text">
-                    <i class="ri-user-line"></i>
-                  </div>
-                  <input type="text" class="form-control" id="form-text1" placeholder="">
-                </div>
             </div>
           </div>
-          <div class='row'>
-            <div class="col-md-6 mb-3">
-                <label for="form-password1" class="form-label fs-14 text-dark">Enter
-                  Password</label>
-                <div class="input-group">
-                  <div class="input-group-text">
-                    <i class="ri-lock-line"></i>
-                  </div>
-                  <input type="password" class="form-control" id="form-password1" placeholder="">
-                </div>
-            </div>
-          </div>
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
-            <label class="form-check-label" for="invalidCheck1">
-              Accept Policy
-            </label>
-          </div>
-          <button class="btn btn-primary float-end" type="submit">Submit</button>
+          <button class="btn btn-primary float-end" type="submit">保存</button>
         </div>
       </div>
     </div>
@@ -109,43 +77,11 @@
         <div class='card-body' style='padding-inline: 1.563rem;'>
           <div class='row'>
             <div class="col-md-5 mb-3">
-                <label for="form-text1" class="form-label fs-14 text-dark">名前</label>
-                <div class="input-group">
-                  <div class="input-group-text">
-                    <i class="ri-user-line"></i>
-                  </div>
-                  <input type="text" class="form-control" id="form-text1" placeholder="">
-                </div>
             </div>
             <div class="col-md-5 mb-3">
-                <label for="form-text1" class="form-label fs-14 text-dark">名前</label>
-                <div class="input-group">
-                  <div class="input-group-text">
-                    <i class="ri-user-line"></i>
-                  </div>
-                  <input type="text" class="form-control" id="form-text1" placeholder="">
-                </div>
             </div>
           </div>
-          <div class='row'>
-            <div class="col-md-6 mb-3">
-                <label for="form-password1" class="form-label fs-14 text-dark">Enter
-                  Password</label>
-                <div class="input-group">
-                  <div class="input-group-text">
-                    <i class="ri-lock-line"></i>
-                  </div>
-                  <input type="password" class="form-control" id="form-password1" placeholder="">
-                </div>
-            </div>
-          </div>
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
-            <label class="form-check-label" for="invalidCheck1">
-              Accept Policy
-            </label>
-          </div>
-          <button class="btn btn-primary float-end" type="submit" >Submit</button>
+          <button class="btn btn-primary float-end" type="submit" >保存</button>
         </div>
       </div>
     </div>
@@ -154,6 +90,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { isEmpty } from '@/src/utils.js'
 import Pageheader from "@/components/shared/PageHeader.vue"
 import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
 import SelectWithSearch from "@/components/shared/form/SelectWithSearch.vue"
@@ -175,6 +112,13 @@ export default {
     }
   },
   computed: {
+    selectedDefaultPayway(){
+      if(!isEmpty(this.userFormData.default_payway) && !isEmpty(this.selectableDefaultPayways)){
+        return this.selectableDefaultPayways.find(pw => pw.value == this.userFormData.default_payway)
+      }else{
+        return {}
+      }
+    },
     ...mapState('user', ['userFormData', 'userFormErrorMsg']),
   },
   methods: {
@@ -233,7 +177,7 @@ export default {
   watch: {
     userFormData(newVal){
       this.checkUserValidation()
-    }
+    },
   }
 }
 </script>

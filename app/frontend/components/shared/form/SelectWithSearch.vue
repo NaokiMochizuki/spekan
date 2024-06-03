@@ -1,21 +1,44 @@
 <template>
   <label :for="id" class="form-label fs-14">{{labelText}}</label>
-  <multiselect1 :show-labels="false" @select="onValueChanged" v-model="selectedValue"
-      :options="options" track-by="value" label="name"></multiselect1>
+  <multiselect1
+    :show-labels="false"
+    @select="onValueChanged"
+    v-model="selectedValue"
+    :options="selectableOptions"
+    track-by="value"
+    label="name" />
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import multiselect1 from 'vue-multiselect';
+import multiselect1 from 'vue-multiselect'
+import { isEmpty } from '@/src/utils.js'
 export default {
   name: 'SelectWithSearch',
-  props: ['id', 'currentVal', 'selectableOptions', 'labelText', 'placeholder'],
+  props: {
+    id: String,
+    currentVal: {
+      type: String,
+      default: () => ''
+    },
+    options: {
+      type: Array,
+      default: () => []
+    },
+    labelText: String,
+    placeholder: String
+  },
   components: { multiselect1 },
   data(){
     return{
-      selectedValue: null,
-      options: this.selectableOptions,
+      selectedValue: this.currentVal,
+      options: this.options,
     }
+  },
+  computed: {
+    selectableOptions(){
+      return !isEmpty(this.options) ? this.options : []
+    },
   },
   methods: {
     onValueChanged(e){
@@ -25,11 +48,7 @@ export default {
   },
   watch: {
     currentVal(newVal){
-      let option = this.selectableOptions.find(m => m.value == newVal)
-      this.selectedValue = { value: newVal, name: option['name'] }
-    },
-    selectableOptions(newVal){
-      this.options = newVal
+      this.selectedValue = newVal
     },
   }
 
