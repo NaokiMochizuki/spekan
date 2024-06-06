@@ -6,6 +6,7 @@ class Api::RanksController < ApiController
   end
 
   def show
+    @rank_automation = @rank.rank_automation
   end
 
   def update
@@ -28,6 +29,9 @@ class Api::RanksController < ApiController
     @rank.valid?
   end
 
+  def selectable_automation_types
+  end
+
   private
   def set_rank
     @rank = current_client.ranks.find(params[:id])
@@ -37,6 +41,6 @@ class Api::RanksController < ApiController
     params.require(:rank).permit(:name,
                                  :point_rate,
                                  :color,
-                                 :is_default)
+                                 :is_default, rank_automation_attributes: [:id, :automation_type, :point, :term, :value, :_destroy])
   end
 end

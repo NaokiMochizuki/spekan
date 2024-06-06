@@ -13,7 +13,7 @@ ja:
         is_default: 初期ランク
       rank_automation:
         after_rank_id: 自動昇格後のランク
-        automation_type: 昇格条件
+        automation_type: 昇格判定基準
         last_checked_at: 最終昇格確認日
   enums:
     user:

@@ -20,6 +20,12 @@ Rails.application.routes.draw do
       resources :ranks, only: [:index, :show, :update, :destroy] do
         member do
           post 'is_valid'
+          get 'selectable_automation_types'
+        end
+        resources :rank_automations, only: [] do
+          collection do
+            post 'is_valid'
+          end
         end
       end
     end
