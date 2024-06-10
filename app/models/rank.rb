@@ -5,7 +5,7 @@ class Rank < ApplicationRecord
   has_many :users, through: :user_ranks
   has_one :rank_automation, foreign_key: 'before_rank_id'
 
-  before_destroy :reassign_users_to_default_rank, :default_rank_is_not_deleteable!
+  before_destroy :reassign_users_to_default_rank, :default_rank_is_not_deleteable!, prepend: true
 
   enum color: {
     gray: 1,
@@ -16,7 +16,10 @@ class Rank < ApplicationRecord
   validates_presence_of :name
 
   def reassign_users_to_default_rank
-    #TODO: 削除されるランクに紐づいている顧客がいる場合、デフォルトランクに紐づけた上で削除
+    if users.present?
+      default_rank = client.ranks.find_by(is_default: true)
+      user_ranks.update_all(rank_id: default_rank.id)
+    end
   end
 
   # 初期ランクの場合は削除不可

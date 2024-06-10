@@ -33,7 +33,8 @@ class User < ApplicationRecord
   }
 
   def set_default_rank
-    #TODO: 初期ランクを顧客に紐付け
+    default_rank = client.ranks.find_by(is_default: true)
+    create_user_rank(rank_id: default_rank.id)
   end
 
   def settle_unpaid_amount!

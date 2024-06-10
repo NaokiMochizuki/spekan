@@ -6,6 +6,6 @@ class Client < ApplicationRecord
   after_create :create_default_rank
 
   def create_default_rank
-    #TODO: デフォルトランクを生成
+    ranks.create(name: '初期ランク', is_default: true, point_rate: 0)
   end
 end

@@ -1,5 +1,3 @@
-Client.seed(
-  :id,
-  id: 1,
-  name: 'テストクライアント1',
+Client.seed(:id,
+  { id: 1, name: 'テストクライアント1' }
 )
