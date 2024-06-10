@@ -2,7 +2,11 @@ class Api::RanksController < ApiController
   before_action :set_rank, only: [:show, :update, :destroy, :is_valid]
 
   def index
-    @ranks = current_client.ranks.page(params[:page])
+    if params.has_key?(:without_page) && params[:without_page] == 'true'
+      @ranks = current_client.ranks.page(1).per(current_client.ranks.count)
+    else
+      @ranks = current_client.ranks.page(params[:page])
+    end
   end
 
   def show

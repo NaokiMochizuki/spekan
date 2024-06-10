@@ -29,6 +29,9 @@ export default {
     placeholder: String
   },
   components: { multiselect1 },
+  mounted(){
+    this.selectedValue = this.currentVal
+  },
   data(){
     return{
       selectedValue: this.currentVal,

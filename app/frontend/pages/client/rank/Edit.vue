@@ -40,6 +40,7 @@
           <div class="card-title">ランク自動昇格設定</div>
         </div>
         <div class='card-body' style='padding-inline: 1.563rem;'>
+          <form @submit.prevent="saveRankAutomationData">
           <div class='row'>
             <div class='col-md-12'>
               <RadioButton
@@ -62,8 +63,17 @@
                 @onValue1Changed="onRankAutomationTermChanged"
                 @onValue2Changed="onRankAutomationValueChanged" />
             </div>
+            <div class='col-md-12 mt-3'>
+              <SelectWithSearch
+                id="selectAfterRankId"
+                :currentVal=selectedAfterRank
+                labelText="昇格後のランク"
+                :options="selectableAfterRanks"
+                @onValueChanged="onAfterRankChanged"/>
+            </div>
           </div>
-          <button class="btn btn-primary float-end" type="submit" :disabled="!isRankAutomationFormActive">保存</button>
+          <button type="submit" class="btn btn-primary float-end mt-3" :disabled="!isRankAutomationFormActive">保存</button>
+          </form>
         </div>
       </div>
     </div>
@@ -72,6 +82,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { isEmpty } from '@/src/utils.js'
 import Pageheader from "@/components/shared/PageHeader.vue"
 import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
 import SelectWithSearch from "@/components/shared/form/SelectWithSearch.vue"
@@ -81,9 +92,10 @@ import ToastAlert from '@/components/shared/ToastAlert.vue'
 import Loading from '@/components/shared/Loading.vue'
 export default {
   name: 'clientRankEdit',
-  components: { Pageheader, TextFieldWithIcon, SelectWithSearch, RadioButton, DoubleNumberFieldWithDoubleText, ToastAlert, Loading },
+  components: { Pageheader, TextFieldWithIcon, SelectWithSearch, RadioButton, DoubleNumberFieldWithDoubleText, ToastAlert, Loading, SelectWithSearch },
   async mounted(){
     await this.fetchRank()
+    await this.fetchRanks()
     await this.fetchSelectableAutomationTypes()
     this.isLoading = false
   },
@@ -92,7 +104,8 @@ export default {
       isLoading: true,
       isRankFormActive: true,
       isRankAutomationFormActive: true,
-      selectableAutomationTypes: []
+      selectableAutomationTypes: [],
+      selectableAfterRanks: [],
     }
   },
   computed: {
@@ -110,6 +123,13 @@ export default {
         return '回以上'
       }
     },
+    selectedAfterRank(){
+      if(!isEmpty(this.rankAutomationFormData.after_rank_id) && !isEmpty(this.selectableAfterRanks)){
+        return this.selectableAfterRanks.find(r => r.value == this.rankAutomationFormData.after_rank_id)
+      }else{
+        return {}
+      }
+    },
     ...mapState({
       rankFormData: state => state.rank.rankFormData,
       rankFormErrorMsg: state => state.rank.rankFormErrorMsg,
@@ -124,6 +144,19 @@ export default {
       let res = await this.$axios.get(url)
       this.setRankFormData(res.data['rank'])
       this.setRankAutomationFormData(res.data['rank_automation'])
+    },
+    async fetchRanks(search={}) {
+      try {
+        const res = await this.$axios.get('/api/client/ranks', {
+          params: {
+            without_page: true,
+          }
+        })
+        let d = res.data.ranks.filter(item => item.id !== this.rankFormData.id)
+        this.selectableAfterRanks = d.map(r => ({ name: r.name, value: r.id }))
+      } catch(e) {
+        alert('ERROR')
+      }
     },
     async fetchSelectableAutomationTypes(){
       let url = `/api/client/ranks/${this.$route.params.id}/selectable_automation_types`
@@ -167,6 +200,28 @@ export default {
         this.isLoading = false
       }
     },
+    async saveRankAutomationData(){
+      this.isLoading = true
+      await this.checkRankAutomationValidation()
+      if(this.isRankAutomationFormActive){
+        let url
+        let method
+        if (this.rankAutomationFormData.id) {
+          url = `/api/client/ranks/${this.$route.params.id}/rank_automations/${this.rankAutomationFormData.id}`
+          method = 'patch'
+        } else {
+          url = `/api/client/ranks/${this.$route.params.id}/rank_automations`
+          method = 'post'
+        }
+        let res = await this.$axios[method](url, { rank_automation: this.rankAutomationFormData })
+        if(res.data.result){
+          this.$refs.toastAlertRef.showSuccessToast('Success!', 'ランク自動昇格設定の更新に成功しました')
+        }else{
+          this.$refs.toastAlertRef.showErrorToast(`Failed!', 'ランク自動昇格設定の更新に失敗しました。${res.data.error_msg}`)
+        }
+        this.isLoading = false
+      }
+    },
     //=====Rankの値変更処理=====
     onNameChanged(val){
       let newObject = { ...this.rankFormData, name: val }
@@ -195,6 +250,10 @@ export default {
     },
     onRankAutomationValueChanged(val){
       let newObject = { ...this.rankAutomationFormData, value: val }
+      this.setRankAutomationFormData(newObject)
+    },
+    onAfterRankChanged(val){
+      let newObject = { ...this.rankAutomationFormData, after_rank_id: val['value'] }
       this.setRankAutomationFormData(newObject)
     },
     ...mapActions({

@@ -38,7 +38,6 @@
                 @onValueChanged="onEmailChanged"/>
             </div>
             <div class="col-md-4">
-              <!-- TODO: currentValを{name: --, value: --}の形に形成して渡す -->
               <SelectWithSearch
                 id="selectDefaultPayway"
                 :currentVal="selectedDefaultPayway"

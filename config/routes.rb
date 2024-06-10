@@ -22,7 +22,7 @@ Rails.application.routes.draw do
           post 'is_valid'
           get 'selectable_automation_types'
         end
-        resources :rank_automations, only: [] do
+        resources :rank_automations, only: [:create, :update] do
           collection do
             post 'is_valid'
           end
