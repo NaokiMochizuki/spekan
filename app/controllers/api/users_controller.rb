@@ -6,6 +6,7 @@ class Api::UsersController < ApiController
   end
 
   def show
+    @rank = @user.rank
   end
 
   def update

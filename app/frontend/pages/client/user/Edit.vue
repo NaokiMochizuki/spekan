@@ -58,13 +58,23 @@
           <div class="card-title">ランク変更</div>
         </div>
         <div class='card-body' style='padding-inline: 1.563rem;'>
-          <div class='row'>
-            <div class="col-md-5 mb-3">
+          <form @submit.prevent="saveRankData">
+            <div class='row'>
+              <div class="col-md-12 mb-3">
+                <label class="form-label fs-14">現在のランク</label>
+                <p>{{ this.currentRankName }}</p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <!-- TODO: 2回選択すると空になってしまうバグあり -->
+                <SelectWithSearch
+                  id="selectRankId"
+                  labelText="変更後のランク"
+                  :options="selectableRanks"
+                  @onValueChanged="onRankChanged"/>
+              </div>
             </div>
-            <div class="col-md-5 mb-3">
-            </div>
-          </div>
-          <button class="btn btn-primary float-end" type="submit">保存</button>
+            <button class="btn btn-primary float-end" type="submit" :disabled="!isRankFormActive">保存</button>
+          </form>
         </div>
       </div>
     </div>
@@ -101,13 +111,17 @@ export default {
   async mounted(){
     await this.fetchSelectableDefaultPayways()
     await this.fetchUser()
+    await this.fetchSelectableRanks()
     this.isLoading = false
   },
   data(){
     return{
       isLoading: true,
       isUserFormActive: true,
+      isRankFormActive: false,
       selectableDefaultPayways: [],
+      currentRank: null,
+      selectableRanks: []
     }
   },
   computed: {
@@ -118,29 +132,50 @@ export default {
         return {}
       }
     },
-    ...mapState('user', ['userFormData', 'userFormErrorMsg']),
+    currentRankName(){
+      return isEmpty(this.currentRank) ? '未登録' : this.currentRank['name']
+    },
+    ...mapState({
+      userFormData: state => state.user.userFormData,
+      userFormErrorMsg: state => state.user.userFormErrorMsg,
+      userRankFormData: state => state.userRank.userRankFormData,
+    })
   },
   methods: {
+    //=====データ取得処理=====
     async fetchUser(){
       let url = `/api/client/users/${this.$route.params.id}`
       let res = await this.$axios.get(url)
       this.setUserFormData(res.data['user'])
+      this.setUserRankFormData(res.data['user_rank'])
+      this.currentRank = res.data['rank']
+    },
+    async fetchSelectableRanks(){
+      let url = `/api/client/ranks`
+      let res = await this.$axios.get(url)
+      let d = res.data.ranks.filter(item => item.id !== this.userRankFormData.rank_id)
+      this.selectableRanks = d.map(r => ({ name: r.name, value: r.id }))
     },
     async fetchSelectableDefaultPayways(){
       let url = `/api/client/users/${this.$route.params.id}/selectable_default_payways`
       let res = await this.$axios.get(url)
       this.selectableDefaultPayways = res.data
     },
+    
+
+    //=====Validation処理=====
     async checkUserValidation(){
       let url = `/api/client/users/${this.$route.params.id}/is_valid`
       let res = await this.$axios.post(url, { user: this.userFormData })
       this.setUserFormErrorMsg(res.data.error_msg)
       this.checkUserFormActivation()
     },
+    //=====Formの有効化処理=====
     checkUserFormActivation(){
       let hasError = Object.values(this.userFormErrorMsg).some(value => value !== null)
       this.isUserFormActive = !hasError
     },
+    //=====保存処理=====
     async saveUserData(){
       this.isLoading = true
       await this.checkUserValidation()
@@ -155,10 +190,23 @@ export default {
         this.isLoading = false
       }
     },
-    saveRankData(){
+    async saveRankData(){
+      this.isLoading = true
+      if(this.isRankFormActive){
+        let url = `/api/client/users/${this.$route.params.id}/user_ranks/${this.userRankFormData.id}`
+        let res = await this.$axios.patch(url, { user_rank: this.userRankFormData })
+        if(res.data.result){
+          await this.fetchUser()
+          this.$refs.toastAlertRef.showSuccessToast('Success!', 'ランクの更新に成功しました')
+        }else{
+          this.$refs.toastAlertRef.showErrorToast('Failed!', `ランクの更新に失敗しました。 ${res.data.error_msg}`)
+        }
+        this.isLoading = false
+      }
     },
     savePointData(){
     },
+    //=====Userの値変更処理=====
     onNameChanged(val){
       let newObject = { ...this.userFormData, name: val }
       this.setUserFormData(newObject)
@@ -171,7 +219,18 @@ export default {
       let newObject = { ...this.userFormData, default_payway: val['value'] }
       this.setUserFormData(newObject)
     },
-    ...mapActions('user', ['setUserFormData', 'setUserFormErrorMsg'])
+    //=====Rankの値変更処理=====
+    onRankChanged(val){
+      let newObject = { ...this.userRankFormData, rank_id: val['value'], user_id: this.$route.params.id}
+      this.setUserRankFormData(newObject)
+      console.log(this.userRankFormData)
+      this.isRankFormActive = !isEmpty(this.userRankFormData['rank_id'])
+    },
+    ...mapActions({
+      setUserFormData: 'user/setUserFormData',
+      setUserFormErrorMsg: 'user/setUserFormErrorMsg',
+      setUserRankFormData: 'userRank/setUserRankFormData',
+    })
   },
   watch: {
     userFormData(newVal){

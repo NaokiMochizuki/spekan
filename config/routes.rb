@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         collection do
           get 'me'
         end
+        resources :user_ranks, only: [:update]
       end
       resources :ranks, only: [:index, :show, :update, :destroy] do
         member do
