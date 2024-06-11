@@ -1,5 +1,5 @@
 <template>
-	<div class="input-group mb-3" :class="{ 'has-validation': hasError }">
+	<div class="input-group mb-3">
 		<input 
       type="number"
       min="0"
@@ -28,10 +28,9 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
 export default {
   name: 'DoubleNumberFieldWithDoubleText',
-  emits: ['onValueChanged'],
+  emits: ['onValue1Changed', 'onValue2Changed'],
   props: ['currentVal1', 'currentVal2', 'hasError1', 'hasError2', 'errorMsg1', 'errorMsg2', 'text1', 'text2', 'placeholder1', 'placeholder2'],
   data(){
     return{

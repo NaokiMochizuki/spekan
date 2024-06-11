@@ -7,7 +7,7 @@
 
         <div class="header-element">
           <div class="horizontal-logo">
-            <router-link :to="`${url}dashboard`" class="header-logo">
+            <router-link to="/client" class="header-logo">
               <img src="../../../images/template/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
               <img src="../../../images/template/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
               <img src="../../../images/template/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
@@ -56,21 +56,21 @@
                 <p class="fw-semibold text-muted mb-2 fs-13">Apps and pages</p>
                 <ul class="ps-2 list-unstyled">
                   <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                    <router-link :to="`${url}advancedui/calendar`">
+                    <router-link to="/client">
                       <span>
                         <i class='bx bx-calendar me-2 fs-14 bg-primary-transparent p-2 rounded-circle'></i>Calendar
                       </span>
                     </router-link>
                   </li>
                   <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                    <router-link :to="`${url}apps/mail/mailinbox`">
+                    <router-link to="/client">
                       <span>
                         <i class='bx bx-envelope me-2 fs-14 bg-primary-transparent p-2 rounded-circle'></i>Mail
                       </span>
                     </router-link>
                   </li>
                   <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                    <router-link :to="`${url}elements/buttons`">
+                    <router-link to="/client">
                       <span>
                         <i class='bx bx-dice-1 me-2 fs-14 bg-primary-transparent p-2 rounded-circle'></i>Buttons
                       </span>

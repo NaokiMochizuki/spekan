@@ -65,7 +65,7 @@
                 <p>{{ this.currentRankName }}</p>
               </div>
               <div class="col-md-12 mb-3">
-                <!-- TODO: 2回選択すると空になってしまうバグあり -->
+                <!-- TODO: 2回同じ選択肢を選択すると空になってしまうバグあり -->
                 <SelectWithSearch
                   id="selectRankId"
                   labelText="変更後のランク"
