@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_02_010113) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_10_160807) do
   create_table "client_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "client_id"
     t.string "name"
@@ -45,6 +45,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_010113) do
     t.index ["after_rank_id"], name: "index_rank_automations_on_after_rank_id"
     t.index ["automation_type"], name: "index_rank_automations_on_automation_type"
     t.index ["before_rank_id"], name: "index_rank_automations_on_before_rank_id"
+  end
+
+  create_table "rank_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "before_rank_id"
+    t.integer "after_rank_id"
+    t.datetime "changed_at"
+    t.string "changerable_type"
+    t.integer "changerable_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["after_rank_id"], name: "index_rank_records_on_after_rank_id"
+    t.index ["before_rank_id"], name: "index_rank_records_on_before_rank_id"
+    t.index ["changerable_id"], name: "index_rank_records_on_changerable_id"
+    t.index ["user_id"], name: "index_rank_records_on_user_id"
   end
 
   create_table "ranks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

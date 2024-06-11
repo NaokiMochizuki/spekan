@@ -105,6 +105,7 @@ export default {
     ...mapState('rank', ['selectedRank']),
   },
   methods: {
+    // ==========データ取得処理=========
     async fetchRank(){
       let url = `/api/client/ranks/${this.$route.params.id}`
       let res = await this.$axios.get(url)

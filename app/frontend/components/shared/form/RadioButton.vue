@@ -1,6 +1,6 @@
 <template>
   <label :for="id" class="form-label fs-14">{{labelText}}</label>
-  <div class="form-check" v-for="(option, index) in selectables">
+  <div class="form-check" v-for="(option, index) in selectables" :key="index">
     <input
       class="form-check-input"
       :id="'radioOption' + (index+1)"
@@ -19,6 +19,7 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'CusotmRadioButton',
+  emits: ['onValueChanged'],
   props: ['id', 'currentVal', 'selectables', 'labelText', 'placeholder'],
   data(){
     return{

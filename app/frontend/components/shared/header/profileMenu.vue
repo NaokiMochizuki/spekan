@@ -23,28 +23,28 @@
         </div>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom" :to="`${url}pages/profile`">
+        <router-link class="dropdown-item d-flex border-bottom" to="/client">
           <i class="fa-regular fa-user fs-16 align-middle me-2"></i>Profile
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom" :to="`${url}apps/mail/mailinbox`">
+        <router-link class="dropdown-item d-flex border-bottom" to="/client">
           <i class="fa-solid fa-inbox fs-16 align-middle me-2"></i>Inbox
           <span class="badge bg-success ms-auto">25</span>
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom border-block-end" :to="`${url}pages/notificationlist`">
+        <router-link class="dropdown-item d-flex border-bottom border-block-end" to="/client">
           <i class="fa-regular fa-compass fs-16 align-middle me-2"></i>Activity
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom" :to="`${url}pages/settings`">
+        <router-link class="dropdown-item d-flex border-bottom" to="/client">
           <i class="fa-solid fa-gear fs-16 align-middle me-2"></i>Settings
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom" :to="`${url}advancedui/chat`">
+        <router-link class="dropdown-item d-flex border-bottom" to="/client">
           <i class="fa-solid fa-headphones fs-16 align-middle me-2"></i>Support
         </router-link>
       </li>

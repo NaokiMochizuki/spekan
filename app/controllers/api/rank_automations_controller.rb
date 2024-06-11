@@ -2,7 +2,7 @@ class Api::RankAutomationsController < ApiController
   before_action :set_rank_automation, only: [:update]
 
   def create
-    @rank_automation = RankAutomation.new(rank_automation_params)
+    @rank_automation = RankAutomation.new(rank_automation_params.merge(last_checked_at: Time.zone.now))
     @rank_automation.save
   end
 

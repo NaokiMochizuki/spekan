@@ -3,6 +3,7 @@ const user = {
 
   state: {
     users: [],
+    selectedUser: null,
     userFormData: {
       name: null,
       email: null,
@@ -19,6 +20,9 @@ const user = {
     users(state){
       state.users
     },
+    selectedUser(state){
+      state.selectedUser
+    },
     userFormData(state){
       state.userFormData
     },
@@ -30,6 +34,9 @@ const user = {
     setUsers(context, payload){
       context.commit('setUsers', payload)
     },
+    setSelectedUser(context, payload){
+      context.commit('setSelectedUser', payload)
+    },
     setUserFormData(context, payload){
       context.commit('setUserFormData', payload)
     },
@@ -40,6 +47,9 @@ const user = {
   mutations: {
     setUsers(state, payload){
       state.users = payload
+    },
+    setSelectedUser(state, payload){
+      state.selectedUser = payload
     },
     setUserFormData(state, payload){
       state.userFormData = payload

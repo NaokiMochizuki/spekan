@@ -69,6 +69,7 @@
                 <SelectWithSearch
                   id="selectRankId"
                   labelText="変更後のランク"
+                  placeholder="変更後のランクを選択してください"
                   :options="selectableRanks"
                   @onValueChanged="onRankChanged"/>
               </div>
@@ -197,6 +198,7 @@ export default {
         let res = await this.$axios.patch(url, { user_rank: this.userRankFormData })
         if(res.data.result){
           await this.fetchUser()
+          await this.fetchSelectableRanks()
           this.$refs.toastAlertRef.showSuccessToast('Success!', 'ランクの更新に成功しました')
         }else{
           this.$refs.toastAlertRef.showErrorToast('Failed!', `ランクの更新に失敗しました。 ${res.data.error_msg}`)
@@ -223,7 +225,6 @@ export default {
     onRankChanged(val){
       let newObject = { ...this.userRankFormData, rank_id: val['value'], user_id: this.$route.params.id}
       this.setUserRankFormData(newObject)
-      console.log(this.userRankFormData)
       this.isRankFormActive = !isEmpty(this.userRankFormData['rank_id'])
     },
     ...mapActions({

@@ -4,6 +4,7 @@ import store from '../store'
 import router from '../router/'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import simplebar from 'simplebar-vue'
+import axios from 'axios'
 import App from './App.vue'
 
 // CSS
@@ -15,7 +16,6 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import '@fortawesome/fontawesome-free'
 library.add(fas, far, fab)
 import 'simplebar-vue/dist/simplebar.min.css'
-import axios from 'axios'
 
 // Vueの適応
 const app = createApp(App)

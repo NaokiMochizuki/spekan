@@ -2,6 +2,7 @@ class ClientUser < ApplicationRecord
   has_secure_password
   acts_as_paranoid
   belongs_to :client
+  has_many :rank_records, as: :changerable
 
   LOGIN_EXPIRED = 7.days
 

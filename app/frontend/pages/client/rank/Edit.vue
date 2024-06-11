@@ -50,26 +50,28 @@
                 labelText="昇格判定基準"
                 @onValueChanged="onAutomationTypeChanged"/>
             </div>
-            <div class='col-md-12 mt-3'>
-              <DoubleNumberFieldWithDoubleText
-                :currentVal1="rankAutomationFormData['term']"
-                :currentVal2="rankAutomationFormData['value']"
-                :hasError1="rankAutomationFormErrorMsg['term'] != null"
-                :hasError2="rankAutomationFormErrorMsg['value'] != null"
-                :errorMsg1="rankAutomationFormErrorMsg['term']"
-                :errorMsg2="rankAutomationFormErrorMsg['value']"
-                :text1="termText"
-                :text2="valueText"
-                @onValue1Changed="onRankAutomationTermChanged"
-                @onValue2Changed="onRankAutomationValueChanged" />
-            </div>
-            <div class='col-md-12 mt-3'>
-              <SelectWithSearch
-                id="selectAfterRankId"
-                :currentVal=selectedAfterRank
-                labelText="昇格後のランク"
-                :options="selectableAfterRanks"
-                @onValueChanged="onAfterRankChanged"/>
+            <div v-show="rankAutomationFormData['automation_type'] != null">
+              <div class='col-md-12 mt-3'>
+                <DoubleNumberFieldWithDoubleText
+                  :currentVal1="rankAutomationFormData['term']"
+                  :currentVal2="rankAutomationFormData['value']"
+                  :hasError1="rankAutomationFormErrorMsg['term'] != null"
+                  :hasError2="rankAutomationFormErrorMsg['value'] != null"
+                  :errorMsg1="rankAutomationFormErrorMsg['term']"
+                  :errorMsg2="rankAutomationFormErrorMsg['value']"
+                  :text1="termText"
+                  :text2="valueText"
+                  @onValue1Changed="onRankAutomationTermChanged"
+                  @onValue2Changed="onRankAutomationValueChanged" />
+              </div>
+              <div class='col-md-12 mt-3'>
+                <SelectWithSearch
+                  id="selectAfterRankId"
+                  :currentVal=selectedAfterRank
+                  labelText="昇格後のランク"
+                  :options="selectableAfterRanks"
+                  @onValueChanged="onAfterRankChanged"/>
+              </div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary float-end mt-3" :disabled="!isRankAutomationFormActive">保存</button>
@@ -109,6 +111,7 @@ export default {
     }
   },
   computed: {
+    // =========テキスト整形処理=========
     termText(){
       if(this.rankAutomationFormData.automation_type == 'total_amount'){
         return '日間の利用金額が'
@@ -123,6 +126,7 @@ export default {
         return '回以上'
       }
     },
+    // multiselect1用に選択された値を変換
     selectedAfterRank(){
       if(!isEmpty(this.rankAutomationFormData.after_rank_id) && !isEmpty(this.selectableAfterRanks)){
         return this.selectableAfterRanks.find(r => r.value == this.rankAutomationFormData.after_rank_id)
@@ -130,6 +134,7 @@ export default {
         return {}
       }
     },
+    // mapStateでVuexのstateを取得
     ...mapState({
       rankFormData: state => state.rank.rankFormData,
       rankFormErrorMsg: state => state.rank.rankFormErrorMsg,
@@ -256,6 +261,7 @@ export default {
       let newObject = { ...this.rankAutomationFormData, after_rank_id: val['value'] }
       this.setRankAutomationFormData(newObject)
     },
+    // mapActionsでVuexのactionを取得
     ...mapActions({
       setRankFormData: 'rank/setRankFormData',
       setRankFormErrorMsg: 'rank/setRankFormErrorMsg',
@@ -276,5 +282,3 @@ export default {
 
 <style>
 </style>
-
-

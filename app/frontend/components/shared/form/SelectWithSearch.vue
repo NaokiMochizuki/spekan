@@ -5,21 +5,29 @@
     @select="onValueChanged"
     v-model="selectedValue"
     :options="selectableOptions"
+    :placeholder="placeholder"
     track-by="value"
-    label="name" />
+    label="name">
+
+    <template #noResult>
+      <span>該当する検索結果が存在しません</span>
+    </template>
+    <template #noOptions>
+      <span>選択肢が存在しません</span>
+    </template>
+  </multiselect1>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
 import multiselect1 from 'vue-multiselect'
-import { isEmpty } from '@/src/utils.js'
 export default {
   name: 'SelectWithSearch',
+  emits: ['onValueChanged'],
   props: {
     id: String,
     currentVal: {
-      type: String,
-      default: () => ''
+      type: Object,
+      default: () => {}
     },
     options: {
       type: Array,
@@ -29,19 +37,13 @@ export default {
     placeholder: String
   },
   components: { multiselect1 },
-  mounted(){
-    this.selectedValue = this.currentVal
-  },
   data(){
     return{
-      selectedValue: this.currentVal,
-      options: this.options,
+      selectedValue: {},
+      selectableOptions: [],
     }
   },
   computed: {
-    selectableOptions(){
-      return !isEmpty(this.options) ? this.options : []
-    },
   },
   methods: {
     onValueChanged(e){
@@ -52,6 +54,9 @@ export default {
   watch: {
     currentVal(newVal){
       this.selectedValue = newVal
+    },
+    options(newVal){
+      this.selectableOptions = newVal
     },
   }
 

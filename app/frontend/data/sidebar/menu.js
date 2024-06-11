@@ -36,6 +36,29 @@ export let menuData = [
       },
     ],
   },
+  {
+    title: "履歴管理",
+    icon: "fas fa-history",
+    type: "sub",
+    active: false,
+    defaultActive: false,
+    children: [
+      {
+        path: '/client/rank_records',
+        title: "ランク変更履歴",
+        type: "link",
+        active: false,
+        defaultActive: false,
+      },
+      {
+        path: '/client/point_records',
+        title: "ポイント付与履歴",
+        type: "link",
+        active: false,
+        defaultActive: false,
+      },
+    ],
+  },
 ];
 
 

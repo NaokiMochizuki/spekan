@@ -15,6 +15,7 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'TextFieldWithIcon',
+  emits: ['onValueChanged'],
   props: ['id', 'currentVal', 'iconClass', 'labelText', 'placeholder', 'hasError', 'errorMsg'],
   data(){
     return{

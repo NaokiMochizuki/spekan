@@ -12,6 +12,7 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'TextField',
+  emits: ['onValueChanged'],
   props: ['id', 'currentVal', 'labelText', 'placeholder', 'hasError', 'errorMsg'],
   data(){
     return{

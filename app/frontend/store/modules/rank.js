@@ -3,6 +3,7 @@ const rank = {
 
   state: {
     ranks: [],
+    selectedRank: null,
     rankFormData: {
       name: null,
       point_rate: null,
@@ -15,7 +16,6 @@ const rank = {
       is_default: null,
       color: null
     },
-    selectedRank: null
   },
   getters: {
     ranks(state){
