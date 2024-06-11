@@ -34,7 +34,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(user, index) in users" :key="user.id">
+                <tr v-for="user in users" :key="user.id">
                   <th scope="row">
                     <input class="form-check-input" type="checkbox" id="checkboxNoLabel1" value="" aria-label="...">
                   </th>

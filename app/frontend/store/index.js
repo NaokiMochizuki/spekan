@@ -3,6 +3,7 @@ import user from './modules/user.js'
 import userRank from './modules/userRank.js'
 import rank from './modules/rank.js'
 import rankAutomation from './modules/rankAutomation.js'
+import rankRecord from './modules/rankRecord.js'
 import clientUser from './modules/clientUser.js'
 
 const store = createStore({
@@ -11,6 +12,7 @@ const store = createStore({
     userRank,
     rank,
     rankAutomation,
+    rankRecord,
     clientUser
   }
 })

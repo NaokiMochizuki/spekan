@@ -29,6 +29,7 @@ Rails.application.routes.draw do
           end
         end
       end
+      resources :rank_records, only: [:index]
     end
   end
 
@@ -37,5 +38,6 @@ Rails.application.routes.draw do
     root 'dashboards#index'
     resources :users, only: [:index, :show, :edit]
     resources :ranks, only: [:index, :show, :edit]
+    resources :rank_records, only: [:index]
   end
 end

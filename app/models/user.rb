@@ -3,6 +3,7 @@ class User < ApplicationRecord
   belongs_to :client
   has_one :user_rank, dependent: :destroy
   has_one :rank, through: :user_rank
+  has_many :rank_records, dependent: :destroy
 
   after_create :set_default_rank
   before_destroy :settle_unpaid_amount!
