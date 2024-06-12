@@ -65,7 +65,6 @@
                 <p>{{ this.currentRankName }}</p>
               </div>
               <div class="col-md-12 mb-3">
-                <!-- TODO: 2回同じ選択肢を選択すると空になってしまうバグあり -->
                 <SelectWithSearch
                   id="selectRankId"
                   labelText="変更後のランク"
@@ -85,13 +84,23 @@
           <div class="card-title">ポイント付与</div>
         </div>
         <div class='card-body' style='padding-inline: 1.563rem;'>
-          <div class='row'>
-            <div class="col-md-5 mb-3">
+          <form @submit.prevent="givePoint">
+            <div class='row'>
+              <div class="col-md-12 mb-3">
+                <label class="form-label fs-14">現在のポイント</label>
+                <p>{{ currentPoint }}</p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <NumberFieldWithText
+                  id="inputRewardPoint"
+                  text="ポイント付与する"
+                  :currentVal="rewardPoint"
+                  labelText="付与するポイント"
+                  @onValueChanged="onRewardPointChanged"/>
+              </div>
             </div>
-            <div class="col-md-5 mb-3">
-            </div>
-          </div>
-          <button class="btn btn-primary float-end" type="submit" >保存</button>
+            <button class="btn btn-primary float-end" type="submit" :disabled="!isRewardPointFormActive">実行</button>
+          </form>
         </div>
       </div>
     </div>
@@ -103,12 +112,13 @@ import { mapState, mapActions } from 'vuex'
 import { isEmpty } from '@/src/utils.js'
 import Pageheader from "@/components/shared/PageHeader.vue"
 import TextFieldWithIcon from "@/components/shared/form/TextFieldWithIcon.vue"
+import NumberFieldWithText from "@/components/shared/form/NumberFieldWithText.vue"
 import SelectWithSearch from "@/components/shared/form/SelectWithSearch.vue"
 import ToastAlert from '@/components/shared/ToastAlert.vue'
 import Loading from '@/components/shared/Loading.vue'
 export default {
   name: 'clientUserEdit',
-  components: { Pageheader, TextFieldWithIcon, SelectWithSearch, ToastAlert, Loading },
+  components: { Pageheader, TextFieldWithIcon, NumberFieldWithText, SelectWithSearch, ToastAlert, Loading },
   async mounted(){
     await this.fetchSelectableDefaultPayways()
     await this.fetchUser()
@@ -120,9 +130,11 @@ export default {
       isLoading: true,
       isUserFormActive: true,
       isRankFormActive: false,
+      isRewardPointFormActive: false,
       selectableDefaultPayways: [],
       currentRank: null,
-      selectableRanks: []
+      selectableRanks: [],
+      rewardPoint: 0
     }
   },
   computed: {
@@ -135,6 +147,9 @@ export default {
     },
     currentRankName(){
       return isEmpty(this.currentRank) ? '未登録' : this.currentRank['name']
+    },
+    currentPoint(){
+      return isEmpty(this.userFormData) ? '-' : this.userFormData['point']
     },
     ...mapState({
       userFormData: state => state.user.userFormData,
@@ -163,7 +178,6 @@ export default {
       this.selectableDefaultPayways = res.data
     },
     
-
     //=====Validation処理=====
     async checkUserValidation(){
       let url = `/api/client/users/${this.$route.params.id}/is_valid`
@@ -203,10 +217,25 @@ export default {
         }else{
           this.$refs.toastAlertRef.showErrorToast('Failed!', `ランクの更新に失敗しました。 ${res.data.error_msg}`)
         }
-        this.isLoading = false
       }
+      this.isLoading = false
     },
-    savePointData(){
+    async givePoint(){
+      this.isLoading = true
+      if(this.isRewardPointFormActive){
+        let url = `/api/client/users/${this.$route.params.id}/give_point`
+        let res = await this.$axios.post(url,
+         { point: { value: this.rewardPoint } }
+        )
+        if(res.data.result){
+          await this.fetchUser()
+          this.$refs.toastAlertRef.showSuccessToast('Success!', 'ポイント付与に成功しました')
+          this.rewardPoint = 0
+        }else{
+          this.$refs.toastAlertRef.showErrorToast('Failed!', `ポイント付与時にエラーが発生しました。 ${res.data.error_msg}`)
+        }
+      }
+      this.isLoading = false
     },
     //=====Userの値変更処理=====
     onNameChanged(val){
@@ -226,6 +255,11 @@ export default {
       let newObject = { ...this.userRankFormData, rank_id: val['value'], user_id: this.$route.params.id}
       this.setUserRankFormData(newObject)
       this.isRankFormActive = !isEmpty(this.userRankFormData['rank_id'])
+    },
+    //=====Pointの値変更処理=====
+    onRewardPointChanged(val){
+      this.rewardPoint = val
+      this.isRewardPointFormActive = val > 0
     },
     ...mapActions({
       setUserFormData: 'user/setUserFormData',

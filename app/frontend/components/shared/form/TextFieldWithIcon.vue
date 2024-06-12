@@ -19,7 +19,7 @@ export default {
   props: ['id', 'currentVal', 'iconClass', 'labelText', 'placeholder', 'hasError', 'errorMsg'],
   data(){
     return{
-      inputedValue: this.currentVal,
+      inputedValue: null,
     }
   },
   methods: {

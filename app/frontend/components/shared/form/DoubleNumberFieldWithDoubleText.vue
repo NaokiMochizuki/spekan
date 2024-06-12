@@ -34,8 +34,8 @@ export default {
   props: ['currentVal1', 'currentVal2', 'hasError1', 'hasError2', 'errorMsg1', 'errorMsg2', 'text1', 'text2', 'placeholder1', 'placeholder2'],
   data(){
     return{
-      inputedValue1: this.currentVal1,
-      inputedValue2: this.currentVal2,
+      inputedValue1: null,
+      inputedValue2: null,
     }
   },
   methods: {

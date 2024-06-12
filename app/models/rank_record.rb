@@ -5,11 +5,11 @@ class RankRecord < ApplicationRecord
   belongs_to :user
 	
   scope :search_by_params, ->(params) {
-    search_by_user_name(params[:name])
+    search_by_user_name(params[:user_name])
   }
 
-  scope :search_by_user_name, ->(name) {
-    name.present? ? where('name LIKE ?', "%#{name}%") : all
+  scope :search_by_user_name, ->(user_name) {
+    user_name.present? ? joins(:user).where('users.name LIKE ?', "%#{user_name}%") : all
   }
 
 end

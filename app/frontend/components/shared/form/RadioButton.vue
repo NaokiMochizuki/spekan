@@ -23,7 +23,7 @@ export default {
   props: ['id', 'currentVal', 'selectables', 'labelText', 'placeholder'],
   data(){
     return{
-      selectedValue: this.currentVal,
+      selectedValue: null,
     }
   },
   computed: {

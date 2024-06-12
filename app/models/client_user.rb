@@ -3,6 +3,7 @@ class ClientUser < ApplicationRecord
   acts_as_paranoid
   belongs_to :client
   has_many :rank_records, as: :changerable
+  has_many :point_records, as: :eventable
 
   LOGIN_EXPIRED = 7.days
 

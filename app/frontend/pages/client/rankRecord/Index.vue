@@ -42,7 +42,7 @@
                     <div class="d-flex align-items-center">
                       <span class="avatar avatar-xs me-2 online avatar-rounded">
                         <img src="../../../images/template/faces/3.jpg" alt="img">
-                      </span>顧客名
+                      </span>{{ rankRecord.user_name }}
                     </div>
                   </td>
                   <td>ABCDEFG</td>
@@ -96,6 +96,7 @@ export default {
   },
   methods: {
     async fetchRankRecords(search={}) {
+      this.isLoading = true
       try {
         const res = await axios.get('/api/client/rank_records', {
           params: {
@@ -111,6 +112,7 @@ export default {
       } catch {
         alert('ERROR')
       }
+      this.isLoading = false
     },
     // Paginationからの参照メソッド
     onPageChange(newPage){

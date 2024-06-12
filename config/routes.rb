@@ -12,6 +12,8 @@ Rails.application.routes.draw do
         member do
           post 'is_valid'
           get 'selectable_default_payways'
+          post 'give_point'
+          post 'use_point'
         end
         collection do
           get 'me'

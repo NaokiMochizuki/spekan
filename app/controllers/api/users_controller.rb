@@ -1,5 +1,5 @@
 class Api::UsersController < ApiController
-  before_action :set_user, only: [:is_valid, :show, :update, :destroy]
+  before_action :set_user, only: [:is_valid, :show, :update, :destroy, :give_point, :use_point]
 
   def index
     @users = current_client.users.search_by_params(params).page(params[:page])
@@ -36,11 +36,25 @@ class Api::UsersController < ApiController
     @client_user = current_client_user
   end
 
+  def give_point
+    @point_record = @user.give_point(point_params[:value], current_client_user)
+    @result = @point_record.present?
+  end
+
+  def use_point
+    @point_record = @user.use_point(point_params[:value], current_client_user)
+    @result = @point_record.present?
+  end
+
   private
   def user_params
     params.require(:user).permit(:name,
                                  :email,
                                  :default_payway)
+  end
+
+  def point_params
+    params.require(:point).permit(:value)
   end
 
   def set_user

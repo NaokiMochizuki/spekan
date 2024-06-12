@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :user_rank, dependent: :destroy
   has_one :rank, through: :user_rank
   has_many :rank_records, dependent: :destroy
+  has_many :point_records, dependent: :destroy
 
   after_create :set_default_rank
   before_destroy :settle_unpaid_amount!
@@ -40,5 +41,27 @@ class User < ApplicationRecord
 
   def settle_unpaid_amount!
     #TODO: 未精算金額の精算を行い、精算不可の場合は例外を出す
+  end
+
+  # ポイントを付与する
+  def give_point(new_point, eventable)
+    ActiveRecord::Base.transaction do
+      update!(point: point + new_point)
+      point_records.increase.create!(value: new_point, eventable: eventable)
+    end
+  rescue => e
+    logger.error e.message
+    false
+  end
+
+  # ポイントを使用する
+  def use_point(new_point, eventable)
+    ActiveRecord::Base.transaction do
+      update!(point: point + new_point)
+      point_records.decrease.create!(value: new_point, eventable: eventable)
+    end
+  rescue => e
+    logger.error e.message
+    false
   end
 end

@@ -3,6 +3,7 @@ json.set! :user do
   json.name @user.name
   json.email @user.email
   json.default_payway @user.default_payway
+  json.point "#{@user.point}ポイント" #TODO: ポイントの単位を設定する
 end
 json.set! :rank do
   json.id @rank&.id
