@@ -43,8 +43,8 @@ class User < ApplicationRecord
     #TODO: 未精算金額の精算を行い、精算不可の場合は例外を出す
   end
 
-  # ポイントを付与する
-  def give_point(new_point, eventable)
+  # ポイントを加算する
+  def get_point(new_point, eventable)
     ActiveRecord::Base.transaction do
       update!(point: point + new_point)
       point_records.increase.create!(value: new_point, eventable: eventable)
@@ -54,8 +54,8 @@ class User < ApplicationRecord
     false
   end
 
-  # ポイントを使用する
-  def use_point(new_point, eventable)
+  # ポイントを消費する
+  def lost_point(new_point, eventable)
     ActiveRecord::Base.transaction do
       update!(point: point + new_point)
       point_records.decrease.create!(value: new_point, eventable: eventable)

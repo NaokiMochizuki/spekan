@@ -84,7 +84,7 @@
           <div class="card-title">ポイント付与</div>
         </div>
         <div class='card-body' style='padding-inline: 1.563rem;'>
-          <form @submit.prevent="givePoint">
+          <form @submit.prevent="getPoint">
             <div class='row'>
               <div class="col-md-12 mb-3">
                 <label class="form-label fs-14">現在のポイント</label>
@@ -92,14 +92,14 @@
               </div>
               <div class="col-md-12 mb-3">
                 <NumberFieldWithText
-                  id="inputRewardPoint"
+                  id="inputPoint"
                   text="ポイント付与する"
-                  :currentVal="rewardPoint"
+                  :currentVal="point"
                   labelText="付与するポイント"
-                  @onValueChanged="onRewardPointChanged"/>
+                  @onValueChanged="onPointChanged"/>
               </div>
             </div>
-            <button class="btn btn-primary float-end" type="submit" :disabled="!isRewardPointFormActive">実行</button>
+            <button class="btn btn-primary float-end" type="submit" :disabled="!isPointFormActive">実行</button>
           </form>
         </div>
       </div>
@@ -130,11 +130,11 @@ export default {
       isLoading: true,
       isUserFormActive: true,
       isRankFormActive: false,
-      isRewardPointFormActive: false,
+      isPointFormActive: false,
       selectableDefaultPayways: [],
       currentRank: null,
       selectableRanks: [],
-      rewardPoint: 0
+      point: 0
     }
   },
   computed: {
@@ -220,17 +220,17 @@ export default {
       }
       this.isLoading = false
     },
-    async givePoint(){
+    async getPoint(){
       this.isLoading = true
-      if(this.isRewardPointFormActive){
-        let url = `/api/client/users/${this.$route.params.id}/give_point`
+      if(this.isPointFormActive){
+        let url = `/api/client/users/${this.$route.params.id}/get_point`
         let res = await this.$axios.post(url,
-         { point: { value: this.rewardPoint } }
+         { point: { value: this.point } }
         )
         if(res.data.result){
           await this.fetchUser()
           this.$refs.toastAlertRef.showSuccessToast('Success!', 'ポイント付与に成功しました')
-          this.rewardPoint = 0
+          this.point = 0
         }else{
           this.$refs.toastAlertRef.showErrorToast('Failed!', `ポイント付与時にエラーが発生しました。 ${res.data.error_msg}`)
         }
@@ -257,9 +257,9 @@ export default {
       this.isRankFormActive = !isEmpty(this.userRankFormData['rank_id'])
     },
     //=====Pointの値変更処理=====
-    onRewardPointChanged(val){
-      this.rewardPoint = val
-      this.isRewardPointFormActive = val > 0
+    onPointChanged(val){
+      this.point = val
+      this.isPointFormActive = val > 0
     },
     ...mapActions({
       setUserFormData: 'user/setUserFormData',

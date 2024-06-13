@@ -1,5 +1,5 @@
 class Api::UsersController < ApiController
-  before_action :set_user, only: [:is_valid, :show, :update, :destroy, :give_point, :use_point]
+  before_action :set_user, only: [:is_valid, :show, :update, :destroy, :get_point, :lost_point]
 
   def index
     @users = current_client.users.search_by_params(params).page(params[:page])
@@ -36,13 +36,13 @@ class Api::UsersController < ApiController
     @client_user = current_client_user
   end
 
-  def give_point
-    @point_record = @user.give_point(point_params[:value], current_client_user)
+  def get_point
+    @point_record = @user.get_point(point_params[:value], current_client_user)
     @result = @point_record.present?
   end
 
-  def use_point
-    @point_record = @user.use_point(point_params[:value], current_client_user)
+  def lost_point
+    @point_record = @user.lost_point(point_params[:value], current_client_user)
     @result = @point_record.present?
   end
 
