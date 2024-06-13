@@ -52,7 +52,7 @@ export let menuData = [
       },
       {
         path: '/client/point_records',
-        title: "ポイント付与履歴",
+        title: "ポイント増減履歴",
         type: "link",
         active: false,
         defaultActive: false,

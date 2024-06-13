@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         end
       end
       resources :rank_records, only: [:index]
+      resources :point_records, only: [:index]
     end
   end
 
@@ -41,5 +42,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit]
     resources :ranks, only: [:index, :show, :edit]
     resources :rank_records, only: [:index]
+    resources :point_records, only: [:index]
   end
 end
