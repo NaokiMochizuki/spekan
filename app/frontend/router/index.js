@@ -75,7 +75,7 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
-        path: 'point_settings/:id/edit',
+        path: 'point_settings/edit',
         name: 'ClientPointSettingEdit',
         component: clientPointSettingEdit,
         meta: { requireAuth: true },

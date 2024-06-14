@@ -2,9 +2,11 @@ class Api::PointSettingsController < ApiController
   before_action :set_point_setting, only: [:edit, :update]
 
   def edit
+    @point_setting = current_client_user.point_setting
   end
 
   def update
+    @point_setting = current_client_user.point_setting
   end
 
   private

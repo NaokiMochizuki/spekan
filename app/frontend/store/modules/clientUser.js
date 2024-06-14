@@ -32,8 +32,7 @@ const clientUser = {
       let meUrl = `/api/client/client_users/me`
       let meRes = await axios.get(meUrl)
       let jsonMe = JSON.stringify(meRes.data)
-      localStorage.authedClientUser = jsonMe
-      console.log(jsonMe)
+      //localStorage.authedClientUser = jsonMe
       //context.commit('setAuthedClientUser', meRes.data)
     },
     logout(context){

@@ -39,7 +39,7 @@
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom" :to="pointSettingUrl">
+        <router-link class="dropdown-item d-flex border-bottom" to="/client/point_settings/edit">
           <i class="fa-solid fa-gear fs-16 align-middle me-2"></i>ポイント設定
         </router-link>
       </li>
@@ -69,10 +69,6 @@ export default {
     }
   },
   computed: {
-    pointSettingUrl(){
-      let authedClientUser = JSON.parse(localStorage.getItem('authedClientUser'))
-      return `/client/point_settings/${authedClientUser['point_setting_id']}/edit`
-    }
   },
   methods: {
     async onLogout(){
