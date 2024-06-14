@@ -11,6 +11,7 @@ import clientRankShow from '@/pages/client/rank/Show.vue'
 import clientRankEdit from '@/pages/client/rank/Edit.vue'
 import clientRankRecordIndex from '@/pages/client/rankRecord/Index.vue'
 import clientPointRecordIndex from '@/pages/client/pointRecord/Index.vue'
+import clientPointSettingEdit from '@/pages/client/pointSetting/Edit.vue'
 import clientSessionNew from '@/pages/client/session/New.vue'
 import clientSessionForgetPassword from '@/pages/client/session/ForgetPassword.vue'
 
@@ -71,6 +72,12 @@ const routes = [
         path: 'point_records',
         name: 'ClientPointRecordIndex',
         component: clientPointRecordIndex,
+        meta: { requireAuth: true },
+      },
+      {
+        path: 'point_settings/:id/edit',
+        name: 'ClientPointSettingEdit',
+        component: clientPointSettingEdit,
         meta: { requireAuth: true },
       },
     ]

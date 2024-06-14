@@ -8,15 +8,17 @@ Rails.application.routes.draw do
     scope :client do
       post '/sign_in' => 'sessions#create'
       get '/sign_out' => 'sessions#destroy'
+      resources :client_users, only: [] do
+        collection do
+          get 'me'
+        end
+      end
       resources :users, only: [:index, :show, :update, :destroy] do
         member do
           post 'is_valid'
           get 'selectable_default_payways'
           post 'get_point'
           post 'lost_point'
-        end
-        collection do
-          get 'me'
         end
         resources :user_ranks, only: [:update]
       end
@@ -43,5 +45,6 @@ Rails.application.routes.draw do
     resources :ranks, only: [:index, :show, :edit]
     resources :rank_records, only: [:index]
     resources :point_records, only: [:index]
+    resources :point_settings, only: [:edit, :update]
   end
 end

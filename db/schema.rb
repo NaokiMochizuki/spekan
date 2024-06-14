@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_12_105032) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_13_135555) do
   create_table "client_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "client_id"
     t.string "name"
@@ -44,6 +44,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_12_105032) do
     t.index ["eventable_type"], name: "index_point_records_on_eventable_type"
     t.index ["record_type"], name: "index_point_records_on_record_type"
     t.index ["user_id"], name: "index_point_records_on_user_id"
+  end
+
+  create_table "point_settings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "client_id"
+    t.boolean "is_valid", default: false
+    t.string "original_name"
+    t.float "rate", default: 0.0
+    t.integer "valid_days", default: 0
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_point_settings_on_client_id"
   end
 
   create_table "rank_automations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

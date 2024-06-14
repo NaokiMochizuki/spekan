@@ -39,8 +39,8 @@
         </router-link>
       </li>
       <li>
-        <router-link class="dropdown-item d-flex border-bottom" to="/client">
-          <i class="fa-solid fa-gear fs-16 align-middle me-2"></i>Settings
+        <router-link class="dropdown-item d-flex border-bottom" :to="{ path: `/client/point_settings/${authedClientUser.point_setting_id}/edit` }">
+          <i class="fa-solid fa-gear fs-16 align-middle me-2"></i>ポイント設定
         </router-link>
       </li>
       <li>
@@ -78,7 +78,7 @@ export default {
         this.$router.push('/client/sign_in')
       }, 1000);
     },
-    ...mapActions('clientUser', ['logout']),
+    ...mapActions('clientUser', ['authedClientUser', 'logout']),
   }
 
 }

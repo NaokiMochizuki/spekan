@@ -32,9 +32,6 @@ class Api::UsersController < ApiController
   def selectable_default_payways
   end
 
-  def me
-    @client_user = current_client_user
-  end
 
   def get_point
     @point_record = @user.get_point(point_params[:value], current_client_user)
