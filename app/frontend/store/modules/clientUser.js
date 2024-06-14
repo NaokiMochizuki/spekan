@@ -10,7 +10,7 @@ const clientUser = {
 
   getters: {
     authedClientUser(state){
-      state.authClientUser
+      state.authedClientUser
     },
     authToken(state){
       state.authToken
@@ -28,7 +28,7 @@ const clientUser = {
       let loginRes = await axios.post(loginUrl, payload)
       context.commit('setAuthToken', loginRes.data.token)
       localStorage.authToken = loginRes.data.token
-      let meUrl = `/api/client/users/me`
+      let meUrl = `/api/client/client_users/me`
       let meRes = await axios.get(meUrl)
       context.commit('setAuthedClientUser', meRes.data)
     },
@@ -41,12 +41,11 @@ const clientUser = {
 
     async fetchAuthedClientUser(context){
       if (!localStorage.authToken) return null
-      if (state.authUser) return state.authUser
-      let url = `/api/client/users/me`
+      if (state.authedClientUser) return state.authedClientUser
+      let url = `/api/client/client_users/me`
       let res = await this.$axios.get(url).catch((e) => {
         return null
       })
-      if (res) return null
       authedClientUser = res.data
       if(authedClientUser){
         context.commit('setAuthedClientUser', authedClientUser)
