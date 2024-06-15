@@ -5,6 +5,7 @@ import rank from './modules/rank.js'
 import rankAutomation from './modules/rankAutomation.js'
 import rankRecord from './modules/rankRecord.js'
 import pointRecord from './modules/pointRecord.js'
+import pointSetting from './modules/pointSetting.js'
 import clientUser from './modules/clientUser.js'
 
 const store = createStore({
@@ -15,6 +16,7 @@ const store = createStore({
     rankAutomation,
     rankRecord,
     pointRecord,
+    pointSetting,
     clientUser
   }
 })

@@ -35,6 +35,11 @@ Rails.application.routes.draw do
       end
       resources :rank_records, only: [:index]
       resources :point_records, only: [:index]
+      resource :point_settings, only: [:show, :edit, :update] do
+        collection do
+          post 'is_valid'
+        end
+      end
     end
   end
 
