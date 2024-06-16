@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_13_135555) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_16_015516) do
+  create_table "client_user_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "user_item_id"
+    t.boolean "required", default: false
+    t.string "help_text"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_client_user_items_on_client_id"
+    t.index ["user_item_id"], name: "index_client_user_items_on_user_item_id"
+  end
+
   create_table "client_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "client_id"
     t.string "name"
@@ -99,6 +111,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_13_135555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_ranks_on_client_id"
+  end
+
+  create_table "user_item_selections", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_item_id"
+    t.string "name"
+    t.integer "order"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_item_id"], name: "index_user_item_selections_on_user_item_id"
+  end
+
+  create_table "user_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "format"
+    t.boolean "is_default", default: false
+    t.bigint "client_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_user_items_on_client_id"
+    t.index ["format"], name: "index_user_items_on_format"
   end
 
   create_table "user_ranks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

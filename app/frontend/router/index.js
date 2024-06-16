@@ -6,6 +6,7 @@ import clientDashbordIndex from '@/pages/client/dashboard/Index.vue'
 import clientUserIndex from '@/pages/client/user/Index.vue'
 import clientUserShow from '@/pages/client/user/Show.vue'
 import clientUserEdit from '@/pages/client/user/Edit.vue'
+import clientUserItemNew from '@/pages/client/userItem/New.vue'
 import clientRankIndex from '@/pages/client/rank/Index.vue'
 import clientRankShow from '@/pages/client/rank/Show.vue'
 import clientRankEdit from '@/pages/client/rank/Edit.vue'
@@ -45,6 +46,11 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
+        path: 'user_items/new',
+        name: 'ClientUserItemNew',
+        component: clientUserItemNew,
+        meta: { requireAuth: true },
+      },{
         path: 'ranks',
         name: 'ClientRankIndex',
         component: clientRankIndex,

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     get '/sign_in' => 'sessions#new'
     root 'dashboards#index'
     resources :users, only: [:index, :show, :edit]
+    resources :user_items, only: [:new]
     resources :ranks, only: [:index, :show, :edit]
     resources :rank_records, only: [:index]
     resources :point_records, only: [:index]

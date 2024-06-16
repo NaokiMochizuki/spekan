@@ -3,6 +3,8 @@ class Client < ApplicationRecord
   has_many :users
   has_many :ranks
   has_one :point_setting
+  has_many :user_items
+  has_many :client_user_items
 
   after_create :create_default_rank, :create_point_setting
 

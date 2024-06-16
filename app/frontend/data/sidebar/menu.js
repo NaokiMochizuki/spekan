@@ -28,6 +28,13 @@ export let menuData = [
         defaultActive: false,
       },
       {
+        path: "/client/user_items/new",
+        title: "入力項目管理",
+        type: "link",
+        active: false,
+        defaultActive: false,
+      },
+      {
         path: `/client/ranks`,
         title: "ランク一覧",
         type: "link",
