@@ -127,11 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_16_015516) do
     t.string "name"
     t.integer "format"
     t.boolean "is_default", default: false
-    t.bigint "client_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_user_items_on_client_id"
     t.index ["format"], name: "index_user_items_on_format"
   end
 

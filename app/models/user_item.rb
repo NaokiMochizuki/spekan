@@ -1,7 +1,7 @@
 class UserItem < ApplicationRecord
   has_many :user_item_selections, dependent: :destroy
   has_many :client_user_items, dependent: :destroy
-  belongs_to :client, optional: true
+  has_many :clients, through: :client_user_items
 
   enum format: {
     text_input: 1,

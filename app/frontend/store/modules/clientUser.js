@@ -27,20 +27,20 @@ const clientUser = {
     async login(context, payload){
       let loginUrl = `/api/client/sign_in`
       let loginRes = await axios.post(loginUrl, payload)
-      //context.commit('setAuthToken', loginRes.data.token)
+      context.commit('setAuthToken', loginRes.data.token)
       localStorage.authToken = loginRes.data.token
       let meUrl = `/api/client/client_users/me`
       let meRes = await axios.get(meUrl)
       let jsonMe = JSON.stringify(meRes.data)
-      //localStorage.authedClientUser = jsonMe
-      //context.commit('setAuthedClientUser', meRes.data)
+      localStorage.authedClientUser = jsonMe
+      context.commit('setAuthedClientUser', meRes.data)
     },
     logout(context){
       localStorage.removeItem("authToken")
       localStorage.removeItem("authedClientUser")
-      // context.commit('setAuthedClientUser', null)
-      // context.commit('setAuthToken', null)
-      // context.commit('setAuthedClientUser', null)
+      context.commit('setAuthedClientUser', null)
+      context.commit('setAuthToken', null)
+      context.commit('setAuthedClientUser', null)
     },
 
     // async fetchAuthedClientUser(context){

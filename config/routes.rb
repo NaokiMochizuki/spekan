@@ -40,6 +40,12 @@ Rails.application.routes.draw do
           post 'is_valid'
         end
       end
+      resources :user_items, only: [] do
+        collection do
+          get 'default_items'
+          get 'original_items'
+        end
+      end
     end
   end
 
